@@ -1,5 +1,7 @@
 package com.nongsa.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,4 +24,8 @@ public class BoardService {
 		boardRepository.save(board);
 	}
 
+	@Transactional(readOnly = true)
+	public Page<Board> 글목록(Pageable pageable){
+		return boardRepository.findAll(pageable);
+	}
 }
