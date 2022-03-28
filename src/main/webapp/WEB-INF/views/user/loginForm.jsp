@@ -9,7 +9,7 @@
 
 
 		<div class="form-group">
-			<label for="pwd">비밀번호</label> <input type="password" name="password" class="form-control" placeholder="Enter password" id="password">
+			<label for="pwd">비밀번호</label> <input type="password" name="password" class="form-control" placeholder="비밀번호를 입력해주세요" id="password">
 		</div>
 
 		<div class="form-group form-check">
