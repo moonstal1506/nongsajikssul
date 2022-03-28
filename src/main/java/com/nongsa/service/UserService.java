@@ -18,8 +18,4 @@ public class UserService {
 			userRepository.save(user);
 	}
 	
-	@Transactional(readOnly =true) 
-	public User 로그인(User user) {
-		return userRepository.findByEmailAndPassword(user.getEmail(),user.getPassword());
-}
 }
