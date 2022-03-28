@@ -7,7 +7,7 @@
 		<div class="card m-2">
 			<div class="card-body">
 				<h4 class="card-title">${board.title}</h4>
-				<a href="#" class="btn btn-success">상세보기</a>
+				<a href="/board/${board.id}" class="btn btn-success">상세보기</a>
 			</div>
 		</div>
 	</c:forEach>
@@ -22,9 +22,7 @@
 			<li class="page-item"><a style="color: #28a745;" class="page-link page-link-success" href="?page=${boards.number-1}">Previous</a></li>
 		</c:otherwise>
 	</c:choose>
-	<c:forEach var="i" begin="1" end="${boards.totalPages}">
-		<li class="page-item"><a style="color: #6c757d;" class="page-link" href="?page=${i-1}">${i}</a></li>
-	</c:forEach>
+
 	<c:choose>
 		<c:when test="${boards.last}">
 			<li class="page-item disabled "><a class="page-link" href="?page=${boards.number+1}">Next</a></li>
