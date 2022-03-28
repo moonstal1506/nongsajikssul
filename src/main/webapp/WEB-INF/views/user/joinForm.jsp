@@ -4,7 +4,7 @@
 <div class="container" style="width:600px">
 	<form>
 		<div class="form-group">
-			<label for="username">닉네임</label> <input type="text" class="form-control" placeholder="닉네임을 입력해주세요" id="username">
+			<label for="username">아이디</label> <input type="text" class="form-control" placeholder="아이디를 입력해주세요" id="username">
 		</div>
 
 		<div class="form-group">
