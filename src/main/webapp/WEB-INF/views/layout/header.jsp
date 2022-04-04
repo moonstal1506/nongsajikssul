@@ -21,7 +21,7 @@
 <body>
 
 	<nav class="navbar navbar-expand-sm bg-light navbar-light" >
-		<a class="navbar-brand" href="/">농사직설</a>
+		<a class="navbar-brand" href="/"><strong>🌾농사직설🌾</strong></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
 		</button>

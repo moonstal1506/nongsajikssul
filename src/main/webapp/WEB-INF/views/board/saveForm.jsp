@@ -2,7 +2,7 @@
 
 <%@ include file="../layout/header.jsp"%>
 
-<div class="container">
+<div class="container" style="width: 800px">
 
 	<form>
 		<div class="form-group">
