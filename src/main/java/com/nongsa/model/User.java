@@ -29,7 +29,7 @@ public class User {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private long id;
 	
 	@Column(nullable=false, length =100, unique=true)
 	private String username;
@@ -48,6 +48,8 @@ public class User {
 	
 	@Enumerated(EnumType.STRING)
 	private RoleType role;
+	
+	private String oauth;//kakao,google
 	
 	@CreationTimestamp
 	private Timestamp createDate;

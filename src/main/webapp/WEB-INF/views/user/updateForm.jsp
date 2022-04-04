@@ -11,11 +11,11 @@
 		<div class="form-group">
 			<label for="email">이메일</label> <input type="email" value="${principal.user.email}" class="form-control" placeholder="이메일을 입력해주세요" id="email">
 		</div>
-
-		<div class="form-group">
-			<label for="pwd">비밀번호</label> <input type="password" class="form-control" placeholder="비밀번호를 입력해주세요" id="password">
-		</div>
-
+		<c:if test="${empty principal.user.oauth }">
+			<div class="form-group">
+				<label for="pwd">비밀번호</label> <input type="password" class="form-control" placeholder="비밀번호를 입력해주세요" id="password">
+			</div>
+		</c:if>
 		<div class="form-group">
 			<label for="username">관심작물</label> <input type="text" value="${principal.user.crop}" class="form-control" placeholder="관심작물이 있나요?" id="crop">
 		</div>

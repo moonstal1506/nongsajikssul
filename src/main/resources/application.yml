@@ -33,3 +33,6 @@ spring:
   jackson:
     serialization:
       fail-on-empty-beans: false
+      
+nongsa:
+  key: 1234
