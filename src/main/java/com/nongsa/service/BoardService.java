@@ -5,18 +5,21 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.nongsa.dto.ReplySaveRequestDto;
 import com.nongsa.model.Board;
 import com.nongsa.model.User;
 import com.nongsa.repository.BoardRepository;
+import com.nongsa.repository.ReplyRepository;
 
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
+@RequiredArgsConstructor//초기화해줘
 @Service
 public class BoardService {
 	
 	private final BoardRepository boardRepository;
-
+	private final ReplyRepository replyRepository;
+	
 	@Transactional
 	public void 글쓰기(Board board, User user) {
 		board.setCount(0);
@@ -50,5 +53,12 @@ public class BoardService {
 				});
 		board.setTitle(requestBoard.getTitle());
 		board.setContent(requestBoard.getContent());
+	}
+	
+	@Transactional
+	public void 댓글쓰기(ReplySaveRequestDto replySaveRequestDto) {
+
+		replyRepository.mSave(replySaveRequestDto.getUserId(), replySaveRequestDto.getBoardId(),replySaveRequestDto.getContent());
+
 	}
 }

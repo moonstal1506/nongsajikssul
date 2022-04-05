@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nongsa.config.auth.PrincipalDetail;
+import com.nongsa.dto.ReplySaveRequestDto;
 import com.nongsa.dto.ResponseDto;
 import com.nongsa.model.Board;
 import com.nongsa.service.BoardService;
@@ -38,5 +39,12 @@ public class BoardApiController {
 		boardService.글수정하기(id, board);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
 		
+	}
+	
+	@PostMapping("/api/board/{boarId}/reply")
+	public ResponseDto<Integer> replySave(@RequestBody ReplySaveRequestDto replySaveRequestDto) {
+		
+		boardService.댓글쓰기(replySaveRequestDto);
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1); 
 	}
 }
