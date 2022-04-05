@@ -2,10 +2,10 @@
 <%@ include file="layout/header.jsp"%>
 
 
-<div class="container" style="width: 800px">
+<div class="container " style="width: 800px">
 	<c:forEach var="board" items="${boards.content}">
 		<div class="card m-2" >
-			<div class="card-body">
+			<div class="card-body ">
 				<h4 class="card-title">${board.title}</h4>
 				<a href="/board/${board.id}" class="btn btn-success ">상세보기</a>
 			</div>
