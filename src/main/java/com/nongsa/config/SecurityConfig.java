@@ -1,6 +1,5 @@
 package com.nongsa.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,13 +12,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.nongsa.config.auth.PrincipalDetailService;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Configuration //ioc
 @EnableWebSecurity //이 파일로 시큐리티 할거임
 @EnableGlobalMethodSecurity(prePostEnabled = true) 
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
-	@Autowired
-	private PrincipalDetailService principalDetailService;
+	private final PrincipalDetailService principalDetailService;
 	
 	@Bean
 	@Override

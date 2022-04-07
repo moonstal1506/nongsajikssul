@@ -1,6 +1,5 @@
 package com.nongsa.controller.api;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,11 +15,14 @@ import com.nongsa.dto.ResponseDto;
 import com.nongsa.model.Board;
 import com.nongsa.service.BoardService;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @RestController
 public class BoardApiController {
 	
-	@Autowired
-	private BoardService boardService;
+	
+	private final BoardService boardService;
 	
 	@PostMapping("/api/board")
 	public ResponseDto<Integer> save(@RequestBody Board board, @AuthenticationPrincipal PrincipalDetail principal) {

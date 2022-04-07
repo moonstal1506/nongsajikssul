@@ -1,6 +1,5 @@
 package com.nongsa.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -11,11 +10,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.nongsa.service.BoardService;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Controller
 public class BoardController {
 
-	@Autowired
-	private BoardService boardService;
+	
+	private final BoardService boardService;
 
 	@GetMapping({ "", "/" })
 	public String index(Model model,
