@@ -13,8 +13,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.nongsa.config.auth.PrincipalDetailService;
 
-@Configuration 
-@EnableWebSecurity 
+@Configuration //ioc
+@EnableWebSecurity //이 파일로 시큐리티 할거임
 @EnableGlobalMethodSecurity(prePostEnabled = true) 
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
