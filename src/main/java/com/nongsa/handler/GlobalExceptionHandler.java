@@ -14,7 +14,7 @@ import com.nongsa.dto.ResponseDto;
 public class GlobalExceptionHandler {
 
 	@ExceptionHandler(value=Exception.class)
-	public ResponseDto<String> handleArgumentException(Exception e) {
+	public ResponseDto<?> handleArgumentException(Exception e) {
 		return new ResponseDto<String>(HttpStatus.INTERNAL_SERVER_ERROR.value(),e.getMessage());
 	}
 }

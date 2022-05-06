@@ -5,6 +5,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +19,9 @@ import com.nongsa.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 
+import javax.validation.Valid;
+
+
 @RequiredArgsConstructor
 @RestController
 public class UserApiController {
@@ -25,11 +30,10 @@ public class UserApiController {
 	
 	private final AuthenticationManager authenticationManager;
 
-	@PostMapping("/auth/joinProc")
-	public ResponseDto<Integer> save(@RequestBody JoinDto joinDto) {
-		User user = joinDto.toEntity();
+	@PostMapping("/auth/join")
+	public ResponseDto<Integer> save(@Valid @RequestBody User user, BindingResult bindingResult) {
+//		User user = joinDto.toEntity();
 		userService.회원가입(user);
-
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
 

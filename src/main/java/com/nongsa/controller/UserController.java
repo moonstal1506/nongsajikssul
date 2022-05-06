@@ -66,7 +66,7 @@ public class UserController {
 		// HttpEntity 오브젝트 생성
 		MultiValueMap<String,String> params= new LinkedMultiValueMap<>();
 		params.add("grant_type","authorization_code");
-		params.add("client_id","");
+		params.add("client_id"," ");
 		params.add("redirect_uri","http://localhost:9000/auth/kakao/callback");
 		params.add("code",code);
 		
