@@ -1,9 +1,11 @@
 package com.nongsa.controller.api;
 
+import com.nongsa.config.auth.PrincipalDetail;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -38,12 +40,10 @@ public class UserApiController {
 	}
 
 	@PutMapping("/user")
-	public ResponseDto<Integer> update(@RequestBody User user) { // key=value, x-www-form-urlencoded
-		userService.회원수정(user);
+	public ResponseDto<Integer> update(@RequestBody User user, @AuthenticationPrincipal PrincipalDetail principalDetail) {
+		User userEntity = userService.회원수정(user);
 		// 세션 등록
-		Authentication authentication = authenticationManager
-				.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
-		SecurityContextHolder.getContext().setAuthentication(authentication);
+		principalDetail.setUser(userEntity);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
 
