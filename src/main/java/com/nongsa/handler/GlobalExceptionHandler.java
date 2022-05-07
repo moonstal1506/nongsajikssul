@@ -1,6 +1,7 @@
 package com.nongsa.handler;
 
 import com.nongsa.handler.exception.CustomValidationException;
+import com.nongsa.util.Script;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -19,8 +20,8 @@ public class GlobalExceptionHandler {
 	}
 
 	@ExceptionHandler(value=Exception.class)
-	public ResponseEntity<?> handleArgumentException(Exception e) {
-		return new ResponseEntity<>(new ResponseDto<>(-1, e.getMessage(),null),HttpStatus.BAD_REQUEST);
+	public String exception(Exception e) {
+		return Script.back(e.getMessage());
 	}
 
 }

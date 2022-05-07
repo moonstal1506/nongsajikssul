@@ -22,7 +22,6 @@ import lombok.RequiredArgsConstructor;
 @RestController
 public class BoardApiController {
 	
-	
 	private final BoardService boardService;
 	
 	@PostMapping("/api/board")
