@@ -40,9 +40,11 @@ public class UserApiController {
 	}
 
 	@PutMapping("/user")
-	public ResponseDto<Integer> update(@RequestBody User user, @AuthenticationPrincipal PrincipalDetail principalDetail) {
+	public ResponseDto<Integer> update(
+			@Valid @RequestBody User user,
+			BindingResult bindingResult,
+			@AuthenticationPrincipal PrincipalDetail principalDetail) {
 		User userEntity = userService.회원수정(user);
-		// 세션 등록
 		principalDetail.setUser(userEntity);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}

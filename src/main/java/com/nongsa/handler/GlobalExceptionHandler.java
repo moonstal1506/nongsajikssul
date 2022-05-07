@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.nongsa.dto.ResponseDto;
 
-
-
 @ControllerAdvice
 @RestController
 public class GlobalExceptionHandler {
