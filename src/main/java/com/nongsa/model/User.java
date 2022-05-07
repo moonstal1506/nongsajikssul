@@ -30,7 +30,7 @@ public class User {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private int id;
 
 	@Size(min = 2, max = 20)
 	@NotBlank(message = "아이디는 필수 입력값입니다.")

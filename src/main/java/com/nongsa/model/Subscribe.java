@@ -25,20 +25,20 @@ import org.springframework.data.annotation.CreatedDate;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(uniqueConstraints = {@UniqueConstraint(name = "subscribe_unique", columnNames = {"followerId", "followedId"})})
+@Table(uniqueConstraints = {@UniqueConstraint(name = "subscribe_unique", columnNames = {"fromUserId", "toUserId"})})
 public class Subscribe {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @JoinColumn(name = "followerId")
+    @JoinColumn(name = "fromUserId")
     @ManyToOne
-    private User follower;
+    private User fromUser;
 
-    @JoinColumn(name = "followedId")
+    @JoinColumn(name = "toUserId")
     @ManyToOne
-    private User followed;
+    private User toUser;
 
     @CreationTimestamp
     private Timestamp createDate;

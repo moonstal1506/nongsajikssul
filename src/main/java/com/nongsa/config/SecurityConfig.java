@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.nongsa.config.auth.PrincipalDetailService;
+import com.nongsa.config.auth.PrincipalDetailsService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -20,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-	private final PrincipalDetailService principalDetailService;
+	private final PrincipalDetailsService principalDetailService;
 
 	@Bean
 	@Override
@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 			.formLogin()
 			.loginPage("/auth/loginForm")
-			.loginProcessingUrl("/auth/loginProc")
+			.loginProcessingUrl("/auth/login")
 			.defaultSuccessUrl("/");
 	}
 }

@@ -2,7 +2,7 @@
 <%@ include file="../layout/header.jsp"%>
 
 <div class="container" style="width: 600px">
-	<form action="/auth/loginProc" method="post">
+	<form action="/auth/login" method="post">
 		<div class="form-group">
 			<label for="username">아이디</label> <input type="text" name="username" class="form-control" placeholder="아이디를 입력해주세요" id="username">
 		</div>

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nongsa.config.auth.PrincipalDetail;
+import com.nongsa.config.auth.PrincipalDetails;
 import com.nongsa.dto.ReplySaveRequestDto;
 import com.nongsa.dto.ResponseDto;
 import com.nongsa.model.Board;
@@ -26,7 +26,7 @@ public class BoardApiController {
 	private final BoardService boardService;
 	
 	@PostMapping("/api/board")
-	public ResponseEntity<?> save(@RequestBody Board board, @AuthenticationPrincipal PrincipalDetail principal) {
+	public ResponseEntity<?> save(@RequestBody Board board, @AuthenticationPrincipal PrincipalDetails principal) {
 		boardService.글쓰기(board, principal.getUser());
 		return new ResponseEntity<>(new ResponseDto<>(1,"글쓰기성공",null),HttpStatus.OK);
 	}

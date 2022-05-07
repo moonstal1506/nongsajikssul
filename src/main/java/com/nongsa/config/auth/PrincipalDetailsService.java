@@ -10,7 +10,7 @@ import com.nongsa.model.User;
 import com.nongsa.repository.UserRepository;
 
 @Service 
-public class PrincipalDetailService implements UserDetailsService{
+public class PrincipalDetailsService implements UserDetailsService{
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -21,6 +21,6 @@ public class PrincipalDetailService implements UserDetailsService{
 				.orElseThrow(()->{
 					return new UsernameNotFoundException("해당 사용자를 찾을 수 없습니다. : "+username);
 				});
-		return new PrincipalDetail(principal); // 시큐리티의 세션에 유저 정보가 저장이 됨.
+		return new PrincipalDetails(principal); // 시큐리티의 세션에 유저 정보가 저장이 됨.
 	}
 }

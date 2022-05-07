@@ -11,12 +11,12 @@ import com.nongsa.model.User;
 import lombok.Data;
 
 @Data
-public class PrincipalDetail implements UserDetails{
+public class PrincipalDetails implements UserDetails{
 
 	private static final long serialVersionUID = 1L;
 	private User user;
 
-	public PrincipalDetail(User user) {
+	public PrincipalDetails(User user) {
 		this.user = user;
 	}
 	
