@@ -11,9 +11,11 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -37,6 +39,13 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+
+	@GetMapping("/user/{userId}")
+	public String userPage(@PathVariable int userId, Model model) {
+		model.addAttribute("user", userService.회원페이지(userId));
+
+		return "user/userPage";
+	}
 
 	@GetMapping("/auth/joinForm")
 	public String joinForm() {

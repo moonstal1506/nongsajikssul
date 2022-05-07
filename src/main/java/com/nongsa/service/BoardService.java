@@ -13,7 +13,7 @@ import com.nongsa.repository.ReplyRepository;
 
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor // 초기화해줘
+@RequiredArgsConstructor
 @Service
 public class BoardService {
 

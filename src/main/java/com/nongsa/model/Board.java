@@ -43,7 +43,8 @@ public class Board {
 	private String content;
 	
 	private int count;
-	
+
+	@JsonIgnoreProperties({"boards"})
 	@ManyToOne(fetch =FetchType.EAGER)
 	@JoinColumn(name="userId")
 	private User user; 

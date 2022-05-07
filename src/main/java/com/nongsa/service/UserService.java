@@ -18,6 +18,14 @@ public class UserService {
 
     private final BCryptPasswordEncoder encoder;
 
+    @Transactional(readOnly = true)
+    public User 회원페이지(int userId) {
+        User userEntity = userRepository.findById(userId).orElseThrow(()->{
+            throw new IllegalStateException("해당 페이지는 없는 페이지입니다.");
+        });
+        return userEntity;
+    }
+
     @Transactional
     public void 회원가입(User user) {
         String rawPassword = user.getPassword();
@@ -30,19 +38,19 @@ public class UserService {
     @Transactional
     public User 회원수정(User user) {
 
-        User persistance = userRepository.findById(user.getId()).orElseThrow(() -> {
+        User persistence = userRepository.findById(user.getId()).orElseThrow(() -> {
             return new IllegalArgumentException("회원 찾기 실패");
         });
-        if (persistance.getOauth() == null || persistance.getOauth().equals("")) {
+        if (persistence.getOauth() == null || persistence.getOauth().equals("")) {
             String rawPassword = user.getPassword();
             String encPassword = encoder.encode(rawPassword);
-            persistance.setPassword(encPassword);
+            persistence.setPassword(encPassword);
         }
-        persistance.setEmail(user.getEmail());
-        persistance.setCrop(user.getCrop());
-        persistance.setLocation(user.getLocation());
+        persistence.setEmail(user.getEmail());
+        persistence.setCrop(user.getCrop());
+        persistence.setLocation(user.getLocation());
 
-        return persistance;
+        return persistence;
     }
 
     @Transactional(readOnly = true)
