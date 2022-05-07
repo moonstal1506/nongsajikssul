@@ -35,8 +35,6 @@ public class UserApiController {
 
     private final UserService userService;
 
-    private final AuthenticationManager authenticationManager;
-
     @PostMapping("/auth/join")
     public ResponseEntity<?> save(@Valid @RequestBody User user, BindingResult bindingResult) {
 //		User user = joinDto.toEntity();

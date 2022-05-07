@@ -53,7 +53,6 @@ public class Board {
 	@OrderBy("id desc")
 	private List<Reply> replys;
 
-	
 	@CreationTimestamp
 	private Timestamp createDate;
 }
