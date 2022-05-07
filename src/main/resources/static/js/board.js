@@ -33,7 +33,7 @@ let index = {
         location.href = "/";
       })
       .fail(function (error) {
-        alert(JSON.stringify(error));
+        alert(error.responseJSON.message);
       });
   },
   
@@ -50,7 +50,7 @@ let index = {
         location.href = "/";
       })
       .fail(function (error) {
-        alert(JSON.stringify(error));
+        alert(error.responseJSON.message);
       });
   },
   
@@ -74,7 +74,7 @@ let index = {
         location.href = "/";
       })
       .fail(function (error) {
-        alert(JSON.stringify(error));
+        alert(error.responseJSON.message);
       });
   },
   
@@ -97,7 +97,7 @@ let index = {
         location.href = `/board/${data.boardId}`;
       })
       .fail(function (error) {
-        alert(JSON.stringify(error));
+        alert(error.responseJSON.message);
       });
   },
   
@@ -112,7 +112,7 @@ let index = {
         location.href = `/board/${boardId}`;
       })
       .fail(function (error) {
-        alert(JSON.stringify(error));
+        alert(error.responseJSON.message);
       });
   },
 };

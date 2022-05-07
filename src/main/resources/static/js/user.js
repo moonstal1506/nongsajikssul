@@ -26,15 +26,15 @@ let index = {
 			contentType: "application/json; charset=utf-8",
 			dataType: "json"
 		}).done(function(resp) {
-			if (resp.status === 500) {
-			    console.log(resp);
-			    alert("회원가입에 실패했습니다.");
-			} else {
-				alert("회원가입이 완료되었습니다.");
-                location.href = "/";
-			}
+			alert("회원가입이 완료되었습니다.");
+            location.href = "/";
 		}).fail(function(error) {
-			alert(JSON.stringify(error));
+		console.log(error);
+			if (error.data == null) {
+                alert(error.responseJSON.message);
+            } else {
+                alert(JSON.stringify(error.responseJSON.data));
+            }
 		});
 	},
 	
@@ -55,15 +55,15 @@ let index = {
 			contentType:"application/json; charset=utf-8",
 			dataType:"json"
 		}).done(function(resp){
-		    if (resp.status === 500) {
-		    console.log(resp);
-        		alert("회원수정에 실패했습니다.");
-        	} else {
-        		alert("회원수정이 완료되었습니다.");
-                location.href = "/";
-        	}
+        	alert("회원수정이 완료되었습니다.");
+            location.href = "/";
 		}).fail(function(error){
-			alert(JSON.stringify(error));
+		console.log(error);
+			if (error.data == null) {
+            	alert(error.responseJSON.message);
+            } else {
+            	alert(JSON.stringify(error.responseJSON.data));
+            }
 		});
 	}
 }
