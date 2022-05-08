@@ -1,5 +1,6 @@
 package com.nongsa.service;
 
+import com.nongsa.dto.UserPageDto;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,11 +20,15 @@ public class UserService {
     private final BCryptPasswordEncoder encoder;
 
     @Transactional(readOnly = true)
-    public User 회원페이지(int userId) {
-        User userEntity = userRepository.findById(userId).orElseThrow(()->{
+    public UserPageDto 회원페이지(int pageUserId, int principalId) {
+        UserPageDto dto = new UserPageDto();
+        User userEntity = userRepository.findById(pageUserId).orElseThrow(() -> {
             throw new IllegalStateException("해당 페이지는 없는 페이지입니다.");
         });
-        return userEntity;
+        dto.setUser(userEntity);
+        dto.setPageOwnerState(pageUserId == principalId);
+        dto.setBoardCount(userEntity.getBoards().size());
+        return dto;
     }
 
     @Transactional

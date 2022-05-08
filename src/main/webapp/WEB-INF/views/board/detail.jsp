@@ -10,7 +10,8 @@
 	</c:if>
 	<br /> <br />
 	<div>
-		글 번호 : <span id="id"><i>${board.id } </i></span> 작성자 : <span><i>${board.user.username } </i></span>
+		글 번호 : <span id="id">${board.id} &nbsp;
+		</span> 작성자 : <a href="/user/${board.user.id}"><span>${board.user.username}</span></a>
 	</div>
 	<br />
 	<div>

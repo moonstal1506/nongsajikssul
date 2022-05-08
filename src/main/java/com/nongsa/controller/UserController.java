@@ -1,5 +1,6 @@
 package com.nongsa.controller;
 
+import com.nongsa.config.auth.PrincipalDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,9 +42,9 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@GetMapping("/user/{userId}")
-	public String userPage(@PathVariable int userId, Model model) {
-		model.addAttribute("user", userService.회원페이지(userId));
+	@GetMapping("/user/{pageUserId}")
+	public String userPage(@PathVariable int pageUserId,Model model,@AuthenticationPrincipal PrincipalDetails principalDetails) {
+		model.addAttribute("dto", userService.회원페이지(pageUserId,principalDetails.getUser().getId()));
 
 		return "user/userPage";
 	}

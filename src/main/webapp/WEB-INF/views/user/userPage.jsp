@@ -1,8 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 
+
+
 <div class="container " style="width: 800px">
-	<c:forEach var="board" items="${user.boards}">
+
+    <div>
+		<h2 class="d-flex">${dto.user.username}님의 글<h2>
+	</div>
+	<div>
+    	구독자 : <span>2</span> &nbsp; 구독중 : <span>2</span> &nbsp;
+    	<button class="badge">구독하기</button>
+    </div>
+	<hr />
+
+	<c:forEach var="board" items="${dto.user.boards}">
 		<div class="card m-2" >
 			<div class="card-body ">
 				<h4 class="card-title">${board.title}</h4>
@@ -11,26 +23,5 @@
 		</div>
 	</c:forEach>
 </div>
-
-<ul class="pagination justify-content-center">
-	<c:choose>
-		<c:when test="${boards.first}">
-			<li class="page-item disabled "><a class="page-link" href="?page=${boards.number-1}">Previous</a></li>
-		</c:when>
-		<c:otherwise>
-			<li class="page-item"><a style="color: #28a745;" class="page-link page-link-success" href="?page=${boards.number-1}">Previous</a></li>
-		</c:otherwise>
-	</c:choose>
-
-	<c:choose>
-		<c:when test="${boards.last}">
-			<li class="page-item disabled "><a class="page-link" href="?page=${boards.number+1}">Next</a></li>
-		</c:when>
-		<c:otherwise>
-			<li class="page-item"><a style="color: #28a745;" class="page-link" href="?page=${boards.number+1}">Next</a></li>
-		</c:otherwise>
-	</c:choose>
-</ul>
-
 
 <%@ include file="../layout/footer.jsp"%>

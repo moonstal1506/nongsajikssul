@@ -56,6 +56,7 @@ public class User {
 
 	@OneToMany(mappedBy="user", fetch =FetchType.LAZY)
 	@JsonIgnoreProperties({"user"})
+	@OrderBy("id desc")
 	private List<Board> boards;
 	
 	@CreationTimestamp
