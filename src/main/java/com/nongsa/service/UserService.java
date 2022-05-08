@@ -1,6 +1,7 @@
 package com.nongsa.service;
 
 import com.nongsa.dto.UserPageDto;
+import com.nongsa.repository.SubscribeRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 public class UserService {
 
     private final UserRepository userRepository;
-
+    private final SubscribeRepository subscribeRepository;
     private final BCryptPasswordEncoder encoder;
 
     @Transactional(readOnly = true)
@@ -28,6 +29,15 @@ public class UserService {
         dto.setUser(userEntity);
         dto.setPageOwnerState(pageUserId == principalId);
         dto.setBoardCount(userEntity.getBoards().size());
+
+        int subscribeState= subscribeRepository.subscribeState(principalId, pageUserId);
+        int subscribeCount= subscribeRepository.subscribeCount(pageUserId);
+        int subscribedCount= subscribeRepository.subscribedCount(pageUserId);
+
+        dto.setSubscribeState(subscribeState==1);
+        dto.setSubscribeCount(subscribeCount);
+        dto.setSubscribedCount(subscribedCount);
+
         return dto;
     }
 
