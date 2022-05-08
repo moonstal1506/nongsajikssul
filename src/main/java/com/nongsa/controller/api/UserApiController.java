@@ -1,16 +1,15 @@
 package com.nongsa.controller.api;
 
 import com.nongsa.config.auth.PrincipalDetails;
+import com.nongsa.dto.SubscribeDto;
 import com.nongsa.handler.exception.CustomValidationException;
+import com.nongsa.service.SubscribeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.nongsa.dto.ResponseDto;
 import com.nongsa.model.User;
@@ -20,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 
 import javax.validation.Valid;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -28,6 +28,19 @@ import java.util.Map;
 public class UserApiController {
 
     private final UserService userService;
+    private final SubscribeService subscribeService;
+
+    @GetMapping("/api/user/{pageUserId}/subscribe")
+    public ResponseEntity<?> subscribeList(@PathVariable int pageUserId,@AuthenticationPrincipal PrincipalDetails principalDetails){
+        List<SubscribeDto> subscribeDto =subscribeService.구독중리스트(principalDetails.getUser().getId(),pageUserId);
+        return new ResponseEntity<>(new ResponseDto<>(1,"구독중 리스트 불러오기 성공", subscribeDto), HttpStatus.OK);
+    }
+
+    @GetMapping("/api/user/{pageUserId}/subscribed")
+    public ResponseEntity<?> subscribedList(@PathVariable int pageUserId,@AuthenticationPrincipal PrincipalDetails principalDetails){
+        List<SubscribeDto> subscribeDto =subscribeService.구독자리스트(principalDetails.getUser().getId(),pageUserId);
+        return new ResponseEntity<>(new ResponseDto<>(1,"구독자 리스트 불러오기 성공", subscribeDto), HttpStatus.OK);
+    }
 
     @PostMapping("/auth/join")
     public ResponseEntity<?> save(@Valid @RequestBody User user, BindingResult bindingResult) {
