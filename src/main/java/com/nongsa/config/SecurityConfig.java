@@ -15,41 +15,41 @@ import com.nongsa.config.auth.PrincipalDetailsService;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-@Configuration // ioc
-@EnableWebSecurity // 이 파일로 시큐리티 할거임
+@Configuration
+@EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-	private final PrincipalDetailsService principalDetailService;
+    private final PrincipalDetailsService principalDetailService;
 
-	@Bean
-	@Override
-	public AuthenticationManager authenticationManagerBean() throws Exception {
-		return super.authenticationManagerBean();
-	}
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
 
-	@Bean
-	public BCryptPasswordEncoder encodePWD() {
-		return new BCryptPasswordEncoder();
-	}
+    @Bean
+    public BCryptPasswordEncoder encodePWD() {
+        return new BCryptPasswordEncoder();
+    }
 
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(principalDetailService).passwordEncoder(encodePWD());
-	}
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(principalDetailService).passwordEncoder(encodePWD());
+    }
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable()
-			.authorizeRequests()
-			.antMatchers("/", "/auth/**", "/js/**", "/css/**", "/image/**")
-			.permitAll()
-			.anyRequest()
-			.authenticated()
-			.and()
-			.formLogin()
-			.loginPage("/auth/loginForm")
-			.loginProcessingUrl("/auth/login")
-			.defaultSuccessUrl("/");
-	}
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/", "/auth/**", "/js/**", "/css/**", "/image/**")
+                .permitAll()
+                .anyRequest()
+                .authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/auth/loginForm")
+                .loginProcessingUrl("/auth/login")
+                .defaultSuccessUrl("/");
+    }
 }

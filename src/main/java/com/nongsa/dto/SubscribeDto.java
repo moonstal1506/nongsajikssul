@@ -12,8 +12,8 @@ import java.math.BigInteger;
 @NoArgsConstructor
 @Data
 public class SubscribeDto {
-	 private Integer id;
-	 private String username;
-	 private BigInteger subscribeState;
-	 private BigInteger equalUserState;
+    private Integer id;
+    private String username;
+    private BigInteger subscribeState;
+    private BigInteger equalUserState;
 }

@@ -14,14 +14,14 @@ import com.nongsa.dto.ResponseDto;
 @RestController
 public class GlobalExceptionHandler {
 
-	@ExceptionHandler(CustomValidationException.class)
-	public ResponseEntity<?> validationException(CustomValidationException e) {
-		return new ResponseEntity<>(new ResponseDto<>(-1, e.getMessage(), e.getErrorMap()),HttpStatus.BAD_REQUEST);
-	}
+    @ExceptionHandler(CustomValidationException.class)
+    public ResponseEntity<?> validationException(CustomValidationException e) {
+        return new ResponseEntity<>(new ResponseDto<>(-1, e.getMessage(), e.getErrorMap()), HttpStatus.BAD_REQUEST);
+    }
 
-	@ExceptionHandler(value=Exception.class)
-	public String exception(Exception e) {
-		return Script.back(e.getMessage());
-	}
+    @ExceptionHandler(value = Exception.class)
+    public String exception(Exception e) {
+        return Script.back(e.getMessage());
+    }
 
 }

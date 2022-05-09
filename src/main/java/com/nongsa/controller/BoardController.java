@@ -24,7 +24,6 @@ import java.awt.*;
 @Controller
 public class BoardController {
 
-
     private final BoardService boardService;
 
     @GetMapping({"", "/"})

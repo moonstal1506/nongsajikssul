@@ -15,21 +15,22 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(uniqueConstraints = { @UniqueConstraint(name = "likes_uk", columnNames = { "boardId","userId" }) })
+@Table(uniqueConstraints = {@UniqueConstraint(name = "likes_uk", columnNames = {"boardId", "userId"})})
 public class Likes {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	
-	@JoinColumn(name="boardId")
-	@ManyToOne
-	private Board board;
-	
-	@JsonIgnoreProperties({"boards"})
-	@JoinColumn(name="userId")
-	@ManyToOne
-	private User user;
 
-	@CreationTimestamp
-	private Timestamp createDate;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @JoinColumn(name = "boardId")
+    @ManyToOne
+    private Board board;
+
+    @JsonIgnoreProperties({"boards"})
+    @JoinColumn(name = "userId")
+    @ManyToOne
+    private User user;
+
+    @CreationTimestamp
+    private Timestamp createDate;
 }

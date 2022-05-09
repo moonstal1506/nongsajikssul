@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.awt.*;
 
-public interface BoardRepository extends JpaRepository<Board, Integer>{
-    @Query(value="SELECT * FROM board WHERE userId IN (SELECT toUserId FROM subscribe WHERE fromUserId =:principalId) order by id desc",nativeQuery=true)
+public interface BoardRepository extends JpaRepository<Board, Integer> {
+    @Query(value = "SELECT * FROM board WHERE userId IN (SELECT toUserId FROM subscribe WHERE fromUserId =:principalId) order by id desc", nativeQuery = true)
     Page<Board> feed(int principalId, Pageable pageable);
 }

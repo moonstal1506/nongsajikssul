@@ -31,15 +31,15 @@ public class UserApiController {
     private final SubscribeService subscribeService;
 
     @GetMapping("/api/user/{pageUserId}/subscribe")
-    public ResponseEntity<?> subscribeList(@PathVariable int pageUserId,@AuthenticationPrincipal PrincipalDetails principalDetails){
-        List<SubscribeDto> subscribeDto =subscribeService.구독중리스트(principalDetails.getUser().getId(),pageUserId);
-        return new ResponseEntity<>(new ResponseDto<>(1,"구독중 리스트 불러오기 성공", subscribeDto), HttpStatus.OK);
+    public ResponseEntity<?> subscribeList(@PathVariable int pageUserId, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+        List<SubscribeDto> subscribeDto = subscribeService.구독중리스트(principalDetails.getUser().getId(), pageUserId);
+        return new ResponseEntity<>(new ResponseDto<>(1, "구독중 리스트 불러오기 성공", subscribeDto), HttpStatus.OK);
     }
 
     @GetMapping("/api/user/{pageUserId}/subscribed")
-    public ResponseEntity<?> subscribedList(@PathVariable int pageUserId,@AuthenticationPrincipal PrincipalDetails principalDetails){
-        List<SubscribeDto> subscribeDto =subscribeService.구독자리스트(principalDetails.getUser().getId(),pageUserId);
-        return new ResponseEntity<>(new ResponseDto<>(1,"구독자 리스트 불러오기 성공", subscribeDto), HttpStatus.OK);
+    public ResponseEntity<?> subscribedList(@PathVariable int pageUserId, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+        List<SubscribeDto> subscribeDto = subscribeService.구독자리스트(principalDetails.getUser().getId(), pageUserId);
+        return new ResponseEntity<>(new ResponseDto<>(1, "구독자 리스트 불러오기 성공", subscribeDto), HttpStatus.OK);
     }
 
     @PostMapping("/auth/join")

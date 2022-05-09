@@ -18,39 +18,39 @@ import java.util.List;
 @Entity
 public class Board {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	
-	@Column(nullable=false, length=100)
-	private String title;
-	
-	@Lob
-	private String content;
-	
-	private int count;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-	@JsonIgnoreProperties({"boards"})
-	@ManyToOne(fetch =FetchType.EAGER)
-	@JoinColumn(name="userId")
-	private User user; 
-	
-	@OneToMany(mappedBy="board", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE) 
-	@JsonIgnoreProperties({"board"})
-	@OrderBy("id desc")
-	private List<Reply> replys;
+    @Column(nullable = false, length = 100)
+    private String title;
 
-	@JsonIgnoreProperties({"board"})
-	@OneToMany(mappedBy = "board")
-	private List<Likes> likes;
+    @Lob
+    private String content;
 
-	@Transient
-	private boolean likeState;
+    private int count;
 
-	@Transient
-	private int likeCount;
+    @JsonIgnoreProperties({"boards"})
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "userId")
+    private User user;
 
-	@CreationTimestamp
-	private Timestamp createDate;
+    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @JsonIgnoreProperties({"board"})
+    @OrderBy("id desc")
+    private List<Reply> replys;
+
+    @JsonIgnoreProperties({"board"})
+    @OneToMany(mappedBy = "board")
+    private List<Likes> likes;
+
+    @Transient
+    private boolean likeState;
+
+    @Transient
+    private int likeCount;
+
+    @CreationTimestamp
+    private Timestamp createDate;
 }
 

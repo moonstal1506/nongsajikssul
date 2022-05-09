@@ -36,9 +36,7 @@ public class BoardService {
 
     @Transactional(readOnly = true)
     public Board 글상세보기(int id, int principalId) {
-        Board board = boardRepository.findById(id).orElseThrow(() -> {
-            return new IllegalArgumentException("글상세보기 실패: 아이디를 찾을 수 없습니다.");
-        });
+        Board board = boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("글상세보기 실패: 아이디를 찾을 수 없습니다."));
         board.setLikeCount(board.getLikes().size());
         board.getLikes().forEach((like) -> {
             if (like.getUser().getId() == principalId) {
@@ -50,9 +48,7 @@ public class BoardService {
 
     @Transactional(readOnly = true)
     public Board 수정페이지(int id) {
-        return boardRepository.findById(id).orElseThrow(() -> {
-            return new IllegalArgumentException("글상세보기 실패: 아이디를 찾을 수 없습니다.");
-        });
+        return boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("글상세보기 실패: 아이디를 찾을 수 없습니다."));
     }
 
     @Transactional
@@ -62,9 +58,7 @@ public class BoardService {
 
     @Transactional
     public void 글수정하기(int id, Board requestBoard) {
-        Board board = boardRepository.findById(id).orElseThrow(() -> {
-            return new IllegalArgumentException("글 찾기 실패: 아이디를 찾을 수 없습니다.");
-        });
+        Board board = boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("글 찾기 실패: 아이디를 찾을 수 없습니다."));
         board.setTitle(requestBoard.getTitle());
         board.setContent(requestBoard.getContent());
     }

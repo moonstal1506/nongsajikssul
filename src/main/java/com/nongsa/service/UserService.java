@@ -30,11 +30,11 @@ public class UserService {
         dto.setPageOwnerState(pageUserId == principalId);
         dto.setBoardCount(userEntity.getBoards().size());
 
-        int subscribeState= subscribeRepository.subscribeState(principalId, pageUserId);
-        int subscribeCount= subscribeRepository.subscribeCount(pageUserId);
-        int subscribedCount= subscribeRepository.subscribedCount(pageUserId);
+        int subscribeState = subscribeRepository.subscribeState(principalId, pageUserId);
+        int subscribeCount = subscribeRepository.subscribeCount(pageUserId);
+        int subscribedCount = subscribeRepository.subscribedCount(pageUserId);
 
-        dto.setSubscribeState(subscribeState==1);
+        dto.setSubscribeState(subscribeState == 1);
         dto.setSubscribeCount(subscribeCount);
         dto.setSubscribedCount(subscribedCount);
 
@@ -53,9 +53,8 @@ public class UserService {
     @Transactional
     public User 회원수정(User user) {
 
-        User persistence = userRepository.findById(user.getId()).orElseThrow(() -> {
-            return new IllegalArgumentException("회원 찾기 실패");
-        });
+        User persistence = userRepository.findById(user.getId()).orElseThrow(() -> new IllegalArgumentException("회원 찾기 실패"));
+
         if (persistence.getOauth() == null || persistence.getOauth().equals("")) {
             String rawPassword = user.getPassword();
             String encPassword = encoder.encode(rawPassword);
@@ -70,9 +69,7 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public User 회원찾기(String username) {
-        User user = userRepository.findByUsername(username).orElseGet(() -> {
-            return new User();
-        });
+        User user = userRepository.findByUsername(username).orElseGet(() -> new User());
         return user;
     }
 
