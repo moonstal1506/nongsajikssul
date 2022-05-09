@@ -13,6 +13,8 @@ import com.nongsa.repository.ReplyRepository;
 
 import lombok.RequiredArgsConstructor;
 
+import java.awt.*;
+
 @RequiredArgsConstructor
 @Service
 public class BoardService {
@@ -62,5 +64,10 @@ public class BoardService {
 	@Transactional
 	public void 댓글삭제(int replyId) {
 		replyRepository.deleteById(replyId);
+	}
+
+	@Transactional(readOnly = true)
+	public Page<Board> 피드보기(int principalId, Pageable pageable) {
+		return boardRepository.feed(principalId,pageable);
 	}
 }
