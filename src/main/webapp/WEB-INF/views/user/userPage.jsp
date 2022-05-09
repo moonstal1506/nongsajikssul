@@ -8,8 +8,12 @@
 	</div>
 	<div>
 	    게시물 : <span>${dto.boardCount}</span> &nbsp;
-    	구독자 : <span>${dto.subscribedCount}</span> &nbsp;
-    	구독중 : <span>${dto.subscribeCount}</span> &nbsp;
+    	<a href="javascript:subscribedInfoModalOpen(${dto.user.id });">
+    	    구독자 : <span>${dto.subscribedCount}</span> &nbsp;
+    	</a>
+    	<a href="javascript:subscribeInfoModalOpen(${dto.user.id });">
+    	    구독중 : <span>${dto.subscribeCount}</span> &nbsp;
+    	</a>
     	<c:choose>
         	<c:when test="${dto.pageOwnerState}">
         	</c:when>
@@ -36,6 +40,29 @@
 			</div>
 		</div>
 	</c:forEach>
+</div>
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">구독정보</h4>
+        <button type="button" onclick="deleteList()" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" onclick="deleteList()" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script src="/js/userPage.js"></script>

@@ -9,5 +9,4 @@ public class NongsaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(NongsaApplication.class, args);
 	}
-
 }
