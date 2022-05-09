@@ -22,6 +22,16 @@
 		<div>${board.content }</div>
 	</div>
 	<hr />
+    <c:choose>
+         <c:when test="${board.likeState}">
+             <i class="fas fa-heart" id="likeIcon" style="color:red;cursor: pointer;" onclick="toggleLike(${board.id})"></i>
+         </c:when>
+         <c:otherwise>
+             <i class="far fa-heart" id="likeIcon" style="color:red;cursor: pointer;" onclick="toggleLike(${board.id})"></i>
+         </c:otherwise>
+    </c:choose>
+    <span class="like"><b id="likeCount">${board.likeCount} </b>likes</span>
+    <br /><br />
 
 	<div class="card">
 		<form>
@@ -35,9 +45,7 @@
 			</div>
 		</form>
 	</div>
-
 	<br />
-
 	<div class="card">
 		<div class="card-header">댓글</div>
 		<ul id="reply-box" class="list-group">
@@ -52,9 +60,6 @@
 					</div>
 				</li>
 			</c:forEach>
-
-
-
 		</ul>
 	</div>
 </div>

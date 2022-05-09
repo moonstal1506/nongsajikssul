@@ -35,15 +35,16 @@ public class BoardController {
     }
 
     @GetMapping("/board/{id}")
-    public String findById(@PathVariable int id, Model model) {
-        model.addAttribute("board", boardService.글상세보기(id));
+    public String findById(@PathVariable int id, Model model,
+                           @AuthenticationPrincipal PrincipalDetails principalDetails) {
+        model.addAttribute("board", boardService.글상세보기(id, principalDetails.getUser().getId()));
 
         return "board/detail";
     }
 
     @GetMapping("/board/{id}/updateForm")
     public String updateForm(@PathVariable int id, Model model) {
-        model.addAttribute("board", boardService.글상세보기(id));
+        model.addAttribute("board", boardService.수정페이지(id));
         return "board/updateForm";
     }
 

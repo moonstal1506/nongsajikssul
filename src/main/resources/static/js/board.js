@@ -117,4 +117,48 @@ let index = {
   },
 };
 
+function toggleLike(boardId) {
+    let likeIcon = $('#likeIcon');
+	if (likeIcon.hasClass("far")) {
+		$.ajax({
+			type: "post",
+			url: `/board/${boardId}/likes`,
+			dataType: "json"
+		}
+		).done(res => {
+
+			let likeCountStr = $('#likeCount').text();
+            let likeCount = Number(likeCountStr) + 1;
+            $('#likeCount').text(likeCount);
+
+			likeIcon.addClass("fas");
+			likeIcon.removeClass("far");
+		}).fail(error => {
+			console.log("오류", error);
+		});
+
+
+	} else {
+
+		$.ajax({
+			type: "delete",
+			url: `/board/${boardId}/likes`,
+			dataType: "json"
+		}
+		).done(res => {
+
+			let likeCountStr = $('#likeCount').text();
+			let likeCount = Number(likeCountStr) - 1;
+			$('#likeCount').text(likeCount);
+
+			likeIcon.removeClass("fas");
+			likeIcon.addClass("far");
+		}).fail(error => {
+			console.log("오류", error);
+		});
+	}
+}
+
+
+
 index.init();
