@@ -4,6 +4,7 @@ import com.nongsa.service.LikesService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,8 @@ import com.nongsa.model.Board;
 import com.nongsa.service.BoardService;
 
 import lombok.RequiredArgsConstructor;
+
+import javax.validation.Valid;
 
 @RequiredArgsConstructor
 @RestController
@@ -46,8 +49,7 @@ public class BoardApiController {
     }
 
     @PostMapping("/api/board/{boarId}/reply")
-    public ResponseEntity<?> replySave(@RequestBody ReplySaveRequestDto replySaveRequestDto) {
-
+    public ResponseEntity<?> replySave(@RequestBody ReplySaveRequestDto replySaveRequestDto, BindingResult bindingResult) {
         boardService.댓글쓰기(replySaveRequestDto);
         return new ResponseEntity<>(new ResponseDto<>(1, "댓글쓰기성공", null), HttpStatus.OK);
     }
