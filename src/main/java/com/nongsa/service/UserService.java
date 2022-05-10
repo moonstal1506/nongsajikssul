@@ -69,8 +69,7 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public User 회원찾기(String username) {
-        User user = userRepository.findByUsername(username).orElseGet(() -> new User());
-        return user;
+        return userRepository.findByUsername(username);
     }
 
 }

@@ -29,7 +29,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Size(min = 2, max = 20)
+    @Size(min = 2, max = 100)
     @NotBlank(message = "아이디는 필수 입력값입니다.")
     @Column(unique = true)
     private String username;
