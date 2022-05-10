@@ -27,7 +27,7 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
         OAuth2User oauth2User = super.loadUser(userRequest);
 
         Map<String, Object> userInfo = oauth2User.getAttributes();
-        String username = "행복한 농부_" + (String) userInfo.get("id");
+        String username = "행복한 농부_" + userInfo.get("id");
         String password = new BCryptPasswordEncoder().encode(UUID.randomUUID().toString());
         String email = (String) userInfo.get("email");
 

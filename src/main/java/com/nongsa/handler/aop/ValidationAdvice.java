@@ -19,20 +19,20 @@ import java.util.stream.Collectors;
 @Aspect
 public class ValidationAdvice {
 
-	@Around("execution(* com.nongsa.controller.api.*Controller.*(..))")
-	public Object apiAdvice(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-		Object[] args = proceedingJoinPoint.getArgs();
-		Arrays.stream(args)
-				.filter(arg -> arg instanceof BindingResult)
-				.map(arg -> (BindingResult) arg).filter(Errors::hasErrors)
-				.forEach(ValidationAdvice::accept);
-		return proceedingJoinPoint.proceed();
-	}
+    @Around("execution(* com.nongsa.controller.api.*Controller.*(..))")
+    public Object apiAdvice(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+        Object[] args = proceedingJoinPoint.getArgs();
+        Arrays.stream(args)
+                .filter(arg -> arg instanceof BindingResult)
+                .map(arg -> (BindingResult) arg).filter(Errors::hasErrors)
+                .forEach(ValidationAdvice::accept);
+        return proceedingJoinPoint.proceed();
+    }
 
-	private static void accept(BindingResult bindingResult) {
-		Map<String, String> errorMap = bindingResult.getFieldErrors()
-				.stream().collect(Collectors.toMap(FieldError::getField, DefaultMessageSourceResolvable::getDefaultMessage, (a, b) -> b));
-		throw new CustomValidationException("유효성검사 실패", errorMap);
-	}
+    private static void accept(BindingResult bindingResult) {
+        Map<String, String> errorMap = bindingResult.getFieldErrors()
+                .stream().collect(Collectors.toMap(FieldError::getField, DefaultMessageSourceResolvable::getDefaultMessage, (a, b) -> b));
+        throw new CustomValidationException("유효성검사 실패", errorMap);
+    }
 
 }

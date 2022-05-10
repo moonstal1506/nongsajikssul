@@ -23,8 +23,8 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
         this.user = user;
     }
 
-    public PrincipalDetails(User user,Map<String, Object> attributes) {
-        this.user =user;
+    public PrincipalDetails(User user, Map<String, Object> attributes) {
+        this.user = user;
     }
 
     @Override
@@ -61,9 +61,7 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
         Collection<GrantedAuthority> collectors = new ArrayList<>();
-        collectors.add(() -> {
-            return "ROLE_" + user.getRole();
-        });
+        collectors.add(() -> "ROLE_" + user.getRole());
 
         return collectors;
     }
@@ -72,7 +70,6 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
     public Map<String, Object> getAttributes() {
         return attributes;
     }
-
 
     @Override
     public String getName() {

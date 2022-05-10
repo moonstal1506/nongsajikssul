@@ -55,7 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/")
                 .and()
                 .oauth2Login()
-                .userInfoEndpoint() //최종응답을 회원정보로 받는다.
-                .userService(oAuth2DetailsService);;
+                .userInfoEndpoint()
+                .userService(oAuth2DetailsService);
     }
 }

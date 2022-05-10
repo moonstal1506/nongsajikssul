@@ -37,7 +37,7 @@ public class BoardService {
 
 
     @Transactional(readOnly = true)
-    public List<Board> 글목록인기순(){
+    public List<Board> 글목록인기순() {
         return boardRepository.popular();
     }
 
