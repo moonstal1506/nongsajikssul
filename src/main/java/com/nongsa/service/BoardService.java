@@ -14,6 +14,7 @@ import com.nongsa.repository.ReplyRepository;
 import lombok.RequiredArgsConstructor;
 
 import java.awt.*;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -32,6 +33,12 @@ public class BoardService {
     @Transactional(readOnly = true)
     public Page<Board> 글목록(Pageable pageable) {
         return boardRepository.findAll(pageable);
+    }
+
+
+    @Transactional(readOnly = true)
+    public List<Board> 글목록인기순(){
+        return boardRepository.popular();
     }
 
     @Transactional(readOnly = true)

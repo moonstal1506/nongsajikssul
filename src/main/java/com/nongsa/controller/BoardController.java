@@ -33,6 +33,13 @@ public class BoardController {
         return "index";
     }
 
+    @GetMapping({"/popular"})
+    public String popular(Model model) {
+        model.addAttribute("boards", boardService.글목록인기순());
+        return "popular";
+
+    }
+
     @GetMapping("/board/{id}")
     public String findById(@PathVariable int id, Model model,
                            @AuthenticationPrincipal PrincipalDetails principalDetails) {
