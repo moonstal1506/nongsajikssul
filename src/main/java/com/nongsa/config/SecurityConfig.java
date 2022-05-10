@@ -1,5 +1,6 @@
 package com.nongsa.config;
 
+import com.nongsa.config.oauth.OAuth2DetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final PrincipalDetailsService principalDetailService;
+    private final OAuth2DetailsService oAuth2DetailsService;
 
     @Bean
     @Override
@@ -50,6 +52,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/auth/loginForm")
                 .loginProcessingUrl("/auth/login")
-                .defaultSuccessUrl("/");
+                .defaultSuccessUrl("/")
+                .and()
+                .oauth2Login()
+                .userInfoEndpoint() //최종응답을 회원정보로 받는다.
+                .userService(oAuth2DetailsService);;
     }
 }

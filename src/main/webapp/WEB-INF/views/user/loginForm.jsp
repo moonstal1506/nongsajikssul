@@ -20,8 +20,9 @@
 		
 		<a href="https://kauth.kakao.com/oauth/authorize?client_id=	&redirect_uri=http://localhost:9000/auth/kakao/callback&response_type=code"><img height="38px"
 			src="/image/kakao_login_button.png" /></a>
+		<button onclick="javascript:location.href='/oauth2/authorization/facebook'" id="btn-login" class="btn btn-primary">페이스북로그인</button>
 	</form>
-	
+
 </div>
 
 <%@ include file="../layout/footer.jsp"%>

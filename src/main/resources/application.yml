@@ -6,12 +6,12 @@ server:
       charset: UTF-8
       enabled: true
       force: true
+
 spring:
   mvc:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
-
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -33,6 +33,9 @@ spring:
   jackson:
     serialization:
       fail-on-empty-beans: false
-      
+
+  profiles:
+    include: oauth
+
 nongsa:
   key: 1234

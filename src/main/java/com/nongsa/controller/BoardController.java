@@ -33,7 +33,7 @@ public class BoardController {
         return "index";
     }
 
-    @GetMapping({"/popular"})
+    @GetMapping("/popular")
     public String popular(Model model) {
         model.addAttribute("boards", boardService.글목록인기순());
         return "popular";

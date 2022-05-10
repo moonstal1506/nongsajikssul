@@ -20,7 +20,8 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 </head>
 <body>
-
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v13.0&appId=1145047056243593&autoLogAppEvents=1" nonce="JBswa8pk"></script>
 	<nav class="navbar navbar-expand-sm bg-light navbar-light" >
 		<a class="navbar-brand" href="/"><strong>🌾농사직설🌾</strong></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">

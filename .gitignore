@@ -32,3 +32,5 @@ bin/
 
 ### VS Code ###
 .vscode/
+
+application-oauth.yml

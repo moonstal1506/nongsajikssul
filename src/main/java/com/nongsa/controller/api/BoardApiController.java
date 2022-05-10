@@ -49,7 +49,7 @@ public class BoardApiController {
     }
 
     @PostMapping("/api/board/{boarId}/reply")
-    public ResponseEntity<?> replySave(@RequestBody ReplySaveRequestDto replySaveRequestDto, BindingResult bindingResult) {
+    public ResponseEntity<?> replySave(@RequestBody ReplySaveRequestDto replySaveRequestDto) {
         boardService.댓글쓰기(replySaveRequestDto);
         return new ResponseEntity<>(new ResponseDto<>(1, "댓글쓰기성공", null), HttpStatus.OK);
     }
