@@ -26,6 +26,9 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+		    <ul class="navbar-nav">
+            	<li class="nav-item"><a class="nav-link" href="/agriculture/calculator">농약계산</a></li>
+            </ul>
 			<c:choose>
 				<c:when test="${empty principal }">
 					<ul class="navbar-nav">
