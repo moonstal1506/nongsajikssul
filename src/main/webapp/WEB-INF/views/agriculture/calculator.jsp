@@ -9,7 +9,6 @@
     <div class="card">
       <div class="card-header">농약계산</div>
       <div class="card-body">
-
           <label for="multiple" class="mr-sm-2"><b>희석배수</b></label>
           <input class="form-control mb-2 mr-sm-2" placeholder="희석배수" id="multiple">
 
@@ -19,9 +18,7 @@
           <button onclick="calculate()" class="btn btn-success mb-2">계산</button>
       </div>
       <div class="card-footer" style="color:red;"><b id="result">0</b>g(mL)</div>
-
     </div>
-
 </div>
 <script src="/js/calculator.js"></script>
 <%@ include file="../layout/footer.jsp"%>

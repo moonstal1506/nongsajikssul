@@ -1,4 +1,4 @@
-package com.nongsa.model;
+package com.nongsa.constant;
 
 public enum RoleType {
     USER, ADMIN

@@ -1,7 +1,7 @@
 package com.nongsa.config.oauth;
 
 import com.nongsa.config.auth.PrincipalDetails;
-import com.nongsa.model.RoleType;
+import com.nongsa.constant.RoleType;
 import com.nongsa.model.User;
 import com.nongsa.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +13,6 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
-import java.util.Optional;
 import java.util.UUID;
 
 @RequiredArgsConstructor
