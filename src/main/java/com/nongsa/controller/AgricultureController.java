@@ -10,4 +10,14 @@ public class AgricultureController {
     public String calculator() {
         return "agriculture/calculator";
     }
+
+    @GetMapping("/agriculture/tech")
+    public String tech() {
+        return "agriculture/tech";
+    }
+
+    @GetMapping("/agriculture/tech/callback")
+    public String techCallback() {
+        return "agriculture/tech-callback";
+    }
 }

@@ -27,6 +27,7 @@
 		</button>
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
 		    <ul class="navbar-nav">
+            	<li class="nav-item"><a class="nav-link" href="/agriculture/tech">농업기술</a></li>
             	<li class="nav-item"><a class="nav-link" href="/agriculture/calculator">농약계산</a></li>
             </ul>
 			<c:choose>
