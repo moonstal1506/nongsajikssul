@@ -14,8 +14,8 @@ public interface BoardRepository extends JpaRepository<Board, Integer> {
     @Query(value = "SELECT * FROM board WHERE userId IN (SELECT toUserId FROM subscribe WHERE fromUserId =:principalId) order by id desc", nativeQuery = true)
     Page<Board> feed(int principalId, Pageable pageable);
 
-    @Query(value = "SELECT b.* FROM board b \n" +
-            "LEFT OUTER JOIN (SELECT  boardId, COUNT(boardId) likeCount FROM likes GROUP BY boardId) c \n" +
+    @Query(value = "SELECT b.* FROM board b " +
+            "LEFT OUTER JOIN (SELECT  boardId, COUNT(boardId) likeCount FROM likes GROUP BY boardId) c " +
             "on b.id=c.boardId ORDER BY likeCount DESC", nativeQuery = true)
     List<Board> popular();
 }
