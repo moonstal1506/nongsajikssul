@@ -51,6 +51,19 @@ public class UserService {
     }
 
     @Transactional
+    public User saveUser(User user){
+        validateDuplicateMember(user);
+        return userRepository.save(user);
+    }
+
+    private void validateDuplicateMember(User user){
+        User findUser = userRepository.findByUsername(user.getUsername());
+        if(findUser != null){
+            throw new IllegalStateException("이미 가입된 회원입니다.");
+        }
+    }
+
+    @Transactional
     public User 회원수정(User user) {
 
         User persistence = userRepository.findById(user.getId()).orElseThrow(() -> new IllegalArgumentException("회원 찾기 실패"));

@@ -149,7 +149,7 @@ public class UserController {
         User originUser = userService.회원찾기(kakaoUser.getUsername());
 
         if (originUser.getUsername() == null) {
-            userService.회원가입(kakaoUser);
+            userService.saveUser(kakaoUser);
         }
         //로그인처리
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(kakaoUser.getUsername(), nongsaKey));

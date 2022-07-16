@@ -1,6 +1,7 @@
 package com.nongsa.controller.api;
 
 import com.nongsa.config.auth.PrincipalDetails;
+import com.nongsa.dto.JoinDto;
 import com.nongsa.dto.ResponseDto;
 import com.nongsa.dto.SubscribeDto;
 import com.nongsa.model.User;
@@ -10,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +25,7 @@ public class UserApiController {
 
     private final UserService userService;
     private final SubscribeService subscribeService;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     @GetMapping("/api/user/{pageUserId}/subscribe")
     public ResponseEntity<?> subscribeList(@PathVariable int pageUserId, @AuthenticationPrincipal PrincipalDetails principalDetails) {
@@ -37,9 +40,9 @@ public class UserApiController {
     }
 
     @PostMapping("/auth/join")
-    public ResponseEntity<?> save(@Valid @RequestBody User user, BindingResult bindingResult) {
-//		User user = joinDto.toEntity();
-        userService.회원가입(user);
+    public ResponseEntity<?> save(@Valid @RequestBody JoinDto joinDto, BindingResult bindingResult) {
+        User user = User.createUser(joinDto, passwordEncoder);
+        userService.saveUser(user);
         return new ResponseEntity<>(new ResponseDto<>(1, "회원가입성공", null), HttpStatus.OK);
     }
 
