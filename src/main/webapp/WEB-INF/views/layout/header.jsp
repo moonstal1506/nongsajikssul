@@ -27,6 +27,7 @@
 		</button>
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
 		    <ul class="navbar-nav">
+            	<li class="nav-item"><a class="nav-link" href="/shop">농산물직거래</a></li>
             	<li class="nav-item"><a class="nav-link" href="/agriculture/tech">농업기술</a></li>
             	<li class="nav-item"><a class="nav-link" href="/agriculture/calculator">농약계산</a></li>
             </ul>
@@ -42,6 +43,10 @@
 					    <li class="nav-item"><a class="nav-link" href="/feed">피드</a></li>
 					    <li class="nav-item"><a class="nav-link" href="/user/${principal.user.id}">마이페이지</a></li>
 						<li class="nav-item"><a class="nav-link" href="/board/saveForm">글쓰기</a></li>
+						<li class="nav-item"><a class="nav-link" href="/admin/item/new">상품 등록</a></li>
+						<li class="nav-item"><a class="nav-link" href="/admin/items">상품 관리</a></li>
+						<li class="nav-item"><a class="nav-link" href="/cart">장바구니</a></li>
+						<li class="nav-item"><a class="nav-link" href="/orders">구매이력</a></li>
 						<li class="nav-item"><a class="nav-link" href="/user/updateForm">회원정보</a></li>
 						<li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
 					</ul>

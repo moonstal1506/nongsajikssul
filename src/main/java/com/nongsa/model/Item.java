@@ -1,6 +1,7 @@
 package com.nongsa.model;
 
 
+
 import com.nongsa.constant.ItemSellStatus;
 import lombok.Getter;
 import lombok.Setter;
