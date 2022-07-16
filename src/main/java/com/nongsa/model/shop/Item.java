@@ -1,8 +1,9 @@
-package com.nongsa.model;
+package com.nongsa.model.shop;
 
 
 
 import com.nongsa.constant.ItemSellStatus;
+import com.nongsa.model.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -13,7 +14,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
-public class Item {
+public class Item extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,16 +24,16 @@ public class Item {
     private String itemName;
 
     @Column(nullable = false)
-    private int price; //가격
+    private int price;
 
     @Column(nullable = false)
-    private int stockNumber; //재고수량
+    private int stockNumber;
 
     @Lob
     @Column(nullable = false)
-    private String itemDetail; //상품 상세 설명
+    private String itemDetail;
 
     @Enumerated(EnumType.STRING)
-    private ItemSellStatus itemSellStatus; //상품 판매 상태
+    private ItemSellStatus itemSellStatus;
 
 }

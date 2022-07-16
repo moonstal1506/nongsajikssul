@@ -1,7 +1,7 @@
 package com.nongsa.repository;
 
 import com.nongsa.constant.ItemSellStatus;
-import com.nongsa.model.Item;
+import com.nongsa.model.shop.Item;
 import com.nongsa.model.QItem;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;

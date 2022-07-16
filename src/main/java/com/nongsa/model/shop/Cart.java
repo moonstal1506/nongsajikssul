@@ -1,5 +1,7 @@
-package com.nongsa.model;
+package com.nongsa.model.shop;
 
+import com.nongsa.model.BaseEntity;
+import com.nongsa.model.User;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
