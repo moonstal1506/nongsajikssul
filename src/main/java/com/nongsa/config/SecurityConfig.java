@@ -42,13 +42,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
         http.csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/", "/auth/**", "/js/**", "/css/**", "/image/**", "/agriculture/**")
-                .permitAll()
-                .anyRequest()
-                .authenticated()
-                .and()
                 .formLogin()
                 .loginPage("/auth/loginForm")
                 .loginProcessingUrl("/auth/login")
@@ -57,5 +52,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .oauth2Login()
                 .userInfoEndpoint()
                 .userService(oAuth2DetailsService);
+
+        http.csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/", "/auth/**", "/js/**", "/css/**", "/image/**", "/agriculture/**")
+                .permitAll()
+                .mvcMatchers("/admin/**").hasRole("ADMIN")
+                .anyRequest()
+                .authenticated();
+
+        http.exceptionHandling()
+                .authenticationEntryPoint(new CustomAuthenticationEntryPoint());
     }
 }
