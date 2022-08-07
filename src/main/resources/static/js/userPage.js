@@ -1,13 +1,14 @@
-function toggleSubscribe(toUserId, obj) {
-	if ($(obj).text() === "구독취소") {
+function toggleSubscribe(toUserId) {
+	if ($('.badge').text() === "구독취소") {
 		$.ajax({
 			type: "delete",
 			url: "/api/subscribe/" + toUserId,
 			dataType: "json"
 		}).done(res => {
-			$(obj).text("구독하기");
+			$('.badge').text("구독하기");
 		}).fail(error => {
-			alert(error.responseJSON.message);
+			console.log(error);
+			alert(error);
 		});
 	} else {
 		$.ajax({
@@ -15,9 +16,9 @@ function toggleSubscribe(toUserId, obj) {
 			url: "/api/subscribe/" + toUserId,
 			dataType: "json"
 		}).done(res => {
-			$(obj).text("구독취소");
+			$('.badge').text("구독취소");
 		}).fail(error => {
-			alert(error.responseJSON.message);
+			alert(error);
 		});
 	}
 }
@@ -59,9 +60,9 @@ function getSubscribeModalItem(dto) {
 	            <h4 style="display:inline;">${dto.username}</h4></a> &nbsp`;
 	if (!dto.equalUserState) {
 		if (dto.subscribeState) {
-			item += `<button class="badge" onclick="toggleSubscribe(${dto.id},this)">구독취소</button>`;
+			item += `<button class="badge" onclick="toggleSubscribe(${dto.id})">구독취소</button>`;
 		} else {
-			item += `<button class="badge" onclick="toggleSubscribe(${dto.id},this)">구독하기</button>`;
+			item += `<button class="badge" onclick="toggleSubscribe(${dto.id})">구독하기</button>`;
 		}
 	}
 	item += `<br/>`;

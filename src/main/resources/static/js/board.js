@@ -33,13 +33,13 @@ let index = {
         location.href = "/";
       })
       .fail(function (error) {
-        alert(error.responseJSON.message);
+        alert(error);
       });
   },
-  
+
   deleteById: function () {
     let id = $("#id").text();
-
+      console.log(id);
     $.ajax({
       type: "DELETE",
       url: "/api/board/" + id,
@@ -50,10 +50,10 @@ let index = {
         location.href = "/";
       })
       .fail(function (error) {
-        alert(error.responseJSON.message);
+        alert(error);
       });
   },
-  
+
   update: function () {
     let id = $("#id").val();
 
@@ -74,10 +74,10 @@ let index = {
         location.href = "/";
       })
       .fail(function (error) {
-        alert(error.responseJSON.message);
+        alert(error);
       });
   },
-  
+
   replySave: function () {
     let data = {
       userId: $("#userId").val(),
@@ -97,10 +97,11 @@ let index = {
         location.href = `/board/${data.boardId}`;
       })
       .fail(function (error) {
-        alert(error.responseJSON.message);
+          console.log(error)
+        alert(error);
       });
   },
-  
+
    replyDelete: function (boardId, replyId) {
     $.ajax({
       type: "DELETE",
@@ -112,13 +113,14 @@ let index = {
         location.href = `/board/${boardId}`;
       })
       .fail(function (error) {
-        alert(error.responseJSON.message);
+        alert(error);
       });
   },
 };
 
 function toggleLike(boardId) {
-    let likeIcon = $('#likeIcon');
+    console.log("ok")
+    let likeIcon = $('.fa-heart');
 	if (likeIcon.hasClass("far")) {
 		$.ajax({
 			type: "post",

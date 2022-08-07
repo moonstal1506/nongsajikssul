@@ -1,6 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-<%@ include file="../layout/header.jsp"%>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/layout}">
+<div layout:fragment="content">
 
 <div class="container" style="width: 800px">
 
@@ -16,12 +18,14 @@
 	<button id="btn-save" class="btn btn-success">작성하기</button>
 </div>
 
-<script>
+<script th:inline="javascript">
 	$('.summernote').summernote({
 		tabsize : 2,
 		height : 300
 	});
 </script>
 
-<script src="/js/board.js"></script>
-<%@ include file="../layout/footer.jsp"%>
+<script type="text/javascript" th:src="@{/js/board.js}"></script>
+
+</div>
+</html>

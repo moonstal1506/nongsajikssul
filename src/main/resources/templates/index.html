@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layouts/layout}">
+<div layout:fragment="content">
+
+    <div class="container " style="width: 800px">
+        <div class="d-flex justify-content-end">
+            <a href="/">최신순 </a>&nbsp;
+            <a href="/popular">인기순 </a>&nbsp;
+        </div>
+
+        <div>
+            <div class="card m-2" th:each="board : ${boards.content}">
+                <div class="card-body ">
+                    <h4 class="card-title">[[${board.title}]]</h4>
+                    <a th:href="@{/board/{id}(id=${board.id})}" class="btn btn-success ">상세보기</a>
+                </div>
+            </div>
+        </div>
+
+        <ul class="pagination justify-content-center">
+            <li class="page-item disabled " th:if="${boards.first}"><a class="page-link"
+                                                                       th:href="@{/(page=|${boards.number-1}|)}">Previous</a></li>
+            <li class="page-item" th:unless="${boards.first}"><a style="color: #28a745;"
+                                                                 class="page-link page-link-success"
+                                                                 th:href="@{/(page=|${boards.number-1}|)}">Previous</a></li>
+
+            <li class="page-item disabled" th:if="${boards.last}"><a class="page-link"
+                                                                     th:href="@{/(page=|${boards.number+1}|)}">Next</a></li>
+            <li class="page-item" th:unless="${boards.last}"><a style="color: #28a745;" class="page-link"
+                                                                th:href="@{/(page=|${boards.number+1}|)}">Next</a></li>
+        </ul>
+    </div>
+</div>
+</html>

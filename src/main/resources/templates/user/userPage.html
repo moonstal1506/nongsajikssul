@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<div layout:fragment="content">
+
+    <div class="container " style="width: 800px">
+
+        <div>
+            <h2 class="d-flex">[[${dto.user.username}]]님의 글</h2>
+        </div>
+        <div>
+            게시물 : <span>[[${dto.boardCount}]]</span> &nbsp;
+            <a th:href="|javascript:subscribedInfoModalOpen(${dto.user.id })|">
+                구독자 : <span>[[${dto.subscribedCount}]]</span> &nbsp;
+            </a>
+            <a th:href="|javascript:subscribeInfoModalOpen(${dto.user.id })|">
+                구독중 : <span>[[${dto.subscribeCount}]]</span> &nbsp;
+            </a>
+            <th:block th:unless="${dto.pageOwnerState}">
+                <button class="badge" th:if="${dto.subscribeState}" th:onclick="|toggleSubscribe(${dto.user.id})|">구독취소</button>
+                <button class="badge" th:unless="${dto.subscribeState}" th:onclick="|toggleSubscribe(${dto.user.id})|">구독하기</button>
+            </th:block>
+        </div>
+
+        <hr/>
+
+        <div class="card m-2" th:each="board : ${dto.user.boards}">
+            <div class="card-body ">
+                <h4 class="card-title">[[${board.title}]]</h4>
+                <a th:href="@{/board/{id}(id=${board.id})}" class="btn btn-success ">상세보기</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">구독정보</h4>
+                    <button type="button" th:onclick="deleteList()" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" th:onclick="deleteList()" class="btn btn-danger" data-dismiss="modal">Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" th:src="@{/js/userPage.js}"></script>
+
+</div>
+</html>

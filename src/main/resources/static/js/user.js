@@ -31,9 +31,9 @@ let index = {
 		}).fail(function(error) {
 		console.log(error);
 			if (error.data == null) {
-                alert(error.responseJSON.message);
+                alert(error);
             } else {
-                alert(JSON.stringify(error.responseJSON.data));
+                alert(JSON.stringify(error));
             }
 		});
 	},
@@ -58,11 +58,11 @@ let index = {
         	alert("회원수정이 완료되었습니다.");
             location.href = "/";
 		}).fail(function(error){
-		console.log(error);
+			console.log(error);
 			if (error.data == null) {
-            	alert(error.responseJSON.message);
+            	alert(error);
             } else {
-            	alert(JSON.stringify(error.responseJSON.data));
+            	alert(JSON.stringify(error));
             }
 		});
 	}

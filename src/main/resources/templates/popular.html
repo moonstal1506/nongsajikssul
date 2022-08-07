@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<div layout:fragment="content">
+
+    <div class="container " style="width: 800px">
+        <div class="d-flex justify-content-end">
+            <a href="/">최신순 </a>&nbsp;
+            <a href="/popular">인기순 </a>&nbsp;
+        </div>
+        <div>
+            <div class="card m-2" th:each="board : ${boards}">
+                <div class="card-body ">
+                    <h4 class="card-title">[[${board.title}]]</h4>
+                    <a th:href="@{/board/{id}(id=${board.id})}" class="btn btn-success ">상세보기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

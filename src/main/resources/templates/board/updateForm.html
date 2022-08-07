@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/layout}">
+<div layout:fragment="content">
+
+<div class="container" style="width: 800px">
+
+	<form>
+		<input type="hidden" id="id" th:value="${board.id}" />
+		<div class="form-group">
+			<input th:value="${board.title}" type="text" class="form-control" placeholder="Enter title" id="title">
+		</div>
+
+		<div class="form-group">
+			<textarea th:value="${board.content}" class="form-control summernote" rows="5" id="content">[(${board.content})]</textarea>
+		</div>
+	</form>
+	<button id="btn-update" class="btn btn-success">수정하기</button>
+</div>
+
+<script th:inline="javascript">
+	$('.summernote').summernote({
+		tabsize : 2,
+		height : 300
+	});
+</script>
+
+
+<script type="text/javascript" th:src="@{/js/board.js}"></script>
+</div>
+</html>

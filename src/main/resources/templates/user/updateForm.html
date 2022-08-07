@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<div layout:fragment="content">
+
+    <div class="container" style="width: 600px">
+        <form>
+            <input type="hidden" id="id" th:value="${#authentication.getPrincipal().user.id}"/>
+            <div class="form-group">
+                <label for="username">아이디</label>
+                <input type="text" th:value="${#authentication.getPrincipal().user.username }"
+                       class="form-control" placeholder="아이디를 입력해주세요" id="username" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="email">이메일</label>
+                <input type="email" th:value="${#authentication.getPrincipal().user.email}"
+                       class="form-control" placeholder="이메일을 입력해주세요" id="email">
+            </div>
+            <div class="form-group" th:if="${#strings.isEmpty(#authentication.getPrincipal().user.oauth)}">
+                <label for="password">비밀번호</label>
+                <input type="password" class="form-control"
+                       placeholder="비밀번호를 입력해주세요" id="password">
+            </div>
+            <div class="form-group">
+                <label for="username">관심작물</label>
+                <input type="text" th:value="${#authentication.getPrincipal().user.crop}"
+                       class="form-control" placeholder="관심작물이 있나요?" id="crop">
+            </div>
+            <div class="form-group">
+                <label for="username">위치</label>
+                <input type="text" th:value="${#authentication.getPrincipal().user.location}"
+                       class="form-control" placeholder="어디에 사시나요?" id="location">
+            </div>
+        </form>
+        <button id="btn-update" class="btn btn-success">회원수정</button>
+    </div>
+
+    <script type="text/javascript" th:src="@{/js/user.js}"></script>
+
+</div>
+</html>
