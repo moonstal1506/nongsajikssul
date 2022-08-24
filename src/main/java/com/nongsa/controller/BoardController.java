@@ -1,13 +1,9 @@
 package com.nongsa.controller;
 
 import com.nongsa.config.auth.PrincipalDetails;
-import com.nongsa.model.Board;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,8 +14,6 @@ import com.nongsa.service.BoardService;
 
 import lombok.RequiredArgsConstructor;
 
-import java.awt.*;
-
 @RequiredArgsConstructor
 @Controller
 public class BoardController {
@@ -29,13 +23,13 @@ public class BoardController {
     @GetMapping({"", "/"})
     public String index(Model model,
                         @PageableDefault(size = 4, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
-        model.addAttribute("boards", boardService.글목록(pageable));
+        model.addAttribute("boards", boardService.findAll(pageable));
         return "index";
     }
 
     @GetMapping("/popular")
     public String popular(Model model) {
-        model.addAttribute("boards", boardService.글목록인기순());
+        model.addAttribute("boards", boardService.findAllPopular());
         return "popular";
 
     }
@@ -43,14 +37,14 @@ public class BoardController {
     @GetMapping("/board/{id}")
     public String findById(@PathVariable Long id, Model model,
                            @AuthenticationPrincipal PrincipalDetails principalDetails) {
-        model.addAttribute("board", boardService.글상세보기(id, principalDetails.getUser().getId()));
+        model.addAttribute("board", boardService.findById(id, principalDetails.getUser().getId()));
 
         return "board/detail";
     }
 
     @GetMapping("/board/{id}/updateForm")
     public String updateForm(@PathVariable Long id, Model model) {
-        model.addAttribute("board", boardService.수정페이지(id));
+        model.addAttribute("board", boardService.findByIdUpdate(id));
         return "board/updateForm";
     }
 
@@ -64,7 +58,7 @@ public class BoardController {
     public String feed(Model model,
                        @AuthenticationPrincipal PrincipalDetails principalDetails,
                        @PageableDefault(size = 3) Pageable pageable) {
-        model.addAttribute("boards", boardService.피드보기(principalDetails.getUser().getId(), pageable));
+        model.addAttribute("boards", boardService.feed(principalDetails.getUser().getId(), pageable));
         return "feed";
     }
 }

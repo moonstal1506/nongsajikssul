@@ -13,7 +13,6 @@ import com.nongsa.repository.ReplyRepository;
 
 import lombok.RequiredArgsConstructor;
 
-import java.awt.*;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -24,25 +23,25 @@ public class BoardService {
     private final ReplyRepository replyRepository;
 
     @Transactional
-    public void 글쓰기(Board board, User user) {
+    public void save(Board board, User user) {
         board.setCount(0);
         board.setUser(user);
         boardRepository.save(board);
     }
 
     @Transactional(readOnly = true)
-    public Page<Board> 글목록(Pageable pageable) {
+    public Page<Board> findAll(Pageable pageable) {
         return boardRepository.findAll(pageable);
     }
 
 
     @Transactional(readOnly = true)
-    public List<Board> 글목록인기순() {
+    public List<Board> findAllPopular() {
         return boardRepository.popular();
     }
 
     @Transactional(readOnly = true)
-    public Board 글상세보기(Long id, Long principalId) {
+    public Board findById(Long id, Long principalId) {
         Board board = boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("글상세보기 실패: 아이디를 찾을 수 없습니다."));
         board.setLikeCount(board.getLikes().size());
         board.getLikes().forEach((like) -> {
@@ -54,35 +53,35 @@ public class BoardService {
     }
 
     @Transactional(readOnly = true)
-    public Board 수정페이지(Long id) {
+    public Board findByIdUpdate(Long id) {
         return boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("글상세보기 실패: 아이디를 찾을 수 없습니다."));
     }
 
     @Transactional
-    public void 글삭제하기(Long id) {
+    public void delete(Long id) {
         boardRepository.deleteById(id);
     }
 
     @Transactional
-    public void 글수정하기(Long id, Board requestBoard) {
+    public void findByIdUpdate(Long id, Board requestBoard) {
         Board board = boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("글 찾기 실패: 아이디를 찾을 수 없습니다."));
         board.setTitle(requestBoard.getTitle());
         board.setContent(requestBoard.getContent());
     }
 
     @Transactional
-    public void 댓글쓰기(ReplySaveRequestDto replySaveRequestDto) {
+    public void saveReply(ReplySaveRequestDto replySaveRequestDto) {
         replyRepository.mSave(replySaveRequestDto.getUserId(), replySaveRequestDto.getBoardId(),
                 replySaveRequestDto.getContent());
     }
 
     @Transactional
-    public void 댓글삭제(Long replyId) {
+    public void deleteReply(Long replyId) {
         replyRepository.deleteById(replyId);
     }
 
     @Transactional(readOnly = true)
-    public Page<Board> 피드보기(Long principalId, Pageable pageable) {
+    public Page<Board> feed(Long principalId, Pageable pageable) {
         return boardRepository.feed(principalId, pageable);
     }
 }

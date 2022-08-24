@@ -29,13 +29,13 @@ public class UserApiController {
 
     @GetMapping("/api/user/{pageUserId}/subscribe")
     public ResponseEntity<?> subscribeList(@PathVariable Long pageUserId, @AuthenticationPrincipal PrincipalDetails principalDetails) {
-        List<SubscribeDto> subscribeDto = subscribeService.구독중리스트(principalDetails.getUser().getId(), pageUserId);
+        List<SubscribeDto> subscribeDto = subscribeService.following(principalDetails.getUser().getId(), pageUserId);
         return new ResponseEntity<>(new ResponseDto<>(1, "구독중 리스트 불러오기 성공", subscribeDto), HttpStatus.OK);
     }
 
     @GetMapping("/api/user/{pageUserId}/subscribed")
     public ResponseEntity<?> subscribedList(@PathVariable Long pageUserId, @AuthenticationPrincipal PrincipalDetails principalDetails) {
-        List<SubscribeDto> subscribeDto = subscribeService.구독자리스트(principalDetails.getUser().getId(), pageUserId);
+        List<SubscribeDto> subscribeDto = subscribeService.follower(principalDetails.getUser().getId(), pageUserId);
         return new ResponseEntity<>(new ResponseDto<>(1, "구독자 리스트 불러오기 성공", subscribeDto), HttpStatus.OK);
     }
 
@@ -51,7 +51,7 @@ public class UserApiController {
             @Valid @RequestBody User user,
             BindingResult bindingResult,
             @AuthenticationPrincipal PrincipalDetails principalDetail) {
-        User userEntity = userService.회원수정(user);
+        User userEntity = userService.update(user);
         principalDetail.setUser(userEntity);
         return new ResponseEntity<>(new ResponseDto<>(1, "회원수정성공", null), HttpStatus.OK);
     }

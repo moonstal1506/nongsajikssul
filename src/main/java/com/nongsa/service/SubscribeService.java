@@ -19,7 +19,7 @@ public class SubscribeService {
     private final EntityManager em;
 
     @Transactional(readOnly = true)
-    public List<SubscribeDto> 구독중리스트(Long principalId, Long pageUserId) {
+    public List<SubscribeDto> following(Long principalId, Long pageUserId) {
         StringBuffer sb = new StringBuffer();
         sb.append("SELECT u.id, u.username, ");
         sb.append("if((SELECT 1 FROM subscribe WHERE fromUserId=? AND toUserId=u.id),1,0) subscribeState, ");
@@ -39,7 +39,7 @@ public class SubscribeService {
     }
 
     @Transactional(readOnly = true)
-    public List<SubscribeDto> 구독자리스트(Long principalId, Long pageUserId) {
+    public List<SubscribeDto> follower(Long principalId, Long pageUserId) {
         StringBuffer sb = new StringBuffer();
         sb.append("SELECT u.id, u.username, ");
         sb.append("if((SELECT 1 FROM subscribe WHERE fromUserId=? AND toUserId=u.id),1,0) subscribeState, ");
@@ -59,7 +59,7 @@ public class SubscribeService {
     }
 
     @Transactional
-    public void 구독하기(Long fromUserId, Long toUserId) {
+    public void follow(Long fromUserId, Long toUserId) {
         try {
             subscribeRepository.subscribe(fromUserId, toUserId);
         } catch (Exception e) {
@@ -68,7 +68,7 @@ public class SubscribeService {
     }
 
     @Transactional
-    public void 구독취소하기(Long fromUserId, Long toUserId) {
+    public void unfollow(Long fromUserId, Long toUserId) {
         subscribeRepository.unSubscribe(fromUserId, toUserId);
     }
 }

@@ -6,7 +6,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.nongsa.constant.RoleType;
 import com.nongsa.model.User;
 import com.nongsa.repository.UserRepository;
 
@@ -21,7 +20,7 @@ public class UserService {
     private final BCryptPasswordEncoder encoder;
 
     @Transactional(readOnly = true)
-    public UserPageDto 회원페이지(Long pageUserId, Long principalId) {
+    public UserPageDto userPage(Long pageUserId, Long principalId) {
         UserPageDto dto = new UserPageDto();
         User userEntity = userRepository.findById(pageUserId).orElseThrow(() -> {
             throw new IllegalStateException("해당 페이지는 없는 페이지입니다.");
@@ -42,15 +41,6 @@ public class UserService {
     }
 
     @Transactional
-    public void 회원가입(User user) {
-        String rawPassword = user.getPassword();
-        String encPassword = encoder.encode(rawPassword);
-        user.setPassword(encPassword);
-        user.setRole(RoleType.ADMIN);
-        userRepository.save(user);
-    }
-
-    @Transactional
     public User saveUser(User user){
         validateDuplicateMember(user);
         return userRepository.save(user);
@@ -64,7 +54,7 @@ public class UserService {
     }
 
     @Transactional
-    public User 회원수정(User user) {
+    public User update(User user) {
 
         User persistence = userRepository.findById(user.getId()).orElseThrow(() -> new IllegalArgumentException("회원 찾기 실패"));
 
@@ -81,7 +71,7 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public User 회원찾기(String username) {
+    public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 

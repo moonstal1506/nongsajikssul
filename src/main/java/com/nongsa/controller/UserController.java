@@ -44,7 +44,7 @@ public class UserController {
 
     @GetMapping("/user/{pageUserId}")
     public String userPage(@PathVariable Long pageUserId, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
-        model.addAttribute("dto", userService.회원페이지(pageUserId, principalDetails.getUser().getId()));
+        model.addAttribute("dto", userService.userPage(pageUserId, principalDetails.getUser().getId()));
 
         return "user/userPage";
     }
@@ -146,7 +146,7 @@ public class UserController {
                 .build();
 
         //가입자 혹은 비가입자 체크해서 처리
-        User originUser = userService.회원찾기(kakaoUser.getUsername());
+        User originUser = userService.findByUsername(kakaoUser.getUsername());
 
         if (originUser.getUsername() == null) {
             userService.saveUser(kakaoUser);
