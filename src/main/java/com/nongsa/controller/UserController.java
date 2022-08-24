@@ -43,7 +43,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/user/{pageUserId}")
-    public String userPage(@PathVariable int pageUserId, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+    public String userPage(@PathVariable Long pageUserId, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
         model.addAttribute("dto", userService.회원페이지(pageUserId, principalDetails.getUser().getId()));
 
         return "user/userPage";

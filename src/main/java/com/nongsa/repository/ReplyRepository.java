@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.nongsa.model.Reply;
 
-public interface ReplyRepository extends JpaRepository<Reply, Integer> {
+public interface ReplyRepository extends JpaRepository<Reply, Long> {
     @Modifying
     @Query(value = "INSERT INTO reply(userId, boardId, content, createDate) VALUES(?1, ?2, ?3, now())", nativeQuery = true)
-    int mSave(long userId, int boardId, String content);//업데이트된 행의 개수 리턴
+    int mSave(Long userId, Long boardId, String content);//업데이트된 행의 개수 리턴
 }

@@ -21,7 +21,7 @@ public class UserService {
     private final BCryptPasswordEncoder encoder;
 
     @Transactional(readOnly = true)
-    public UserPageDto 회원페이지(int pageUserId, int principalId) {
+    public UserPageDto 회원페이지(Long pageUserId, Long principalId) {
         UserPageDto dto = new UserPageDto();
         User userEntity = userRepository.findById(pageUserId).orElseThrow(() -> {
             throw new IllegalStateException("해당 페이지는 없는 페이지입니다.");

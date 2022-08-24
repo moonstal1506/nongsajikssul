@@ -12,7 +12,7 @@ import java.math.BigInteger;
 @NoArgsConstructor
 @Data
 public class SubscribeDto {
-    private Integer id;
+    private Long id;
     private String username;
     private BigInteger subscribeState;
     private BigInteger equalUserState;

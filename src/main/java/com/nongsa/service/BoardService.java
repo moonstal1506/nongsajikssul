@@ -42,7 +42,7 @@ public class BoardService {
     }
 
     @Transactional(readOnly = true)
-    public Board 글상세보기(int id, int principalId) {
+    public Board 글상세보기(Long id, Long principalId) {
         Board board = boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("글상세보기 실패: 아이디를 찾을 수 없습니다."));
         board.setLikeCount(board.getLikes().size());
         board.getLikes().forEach((like) -> {
@@ -54,17 +54,17 @@ public class BoardService {
     }
 
     @Transactional(readOnly = true)
-    public Board 수정페이지(int id) {
+    public Board 수정페이지(Long id) {
         return boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("글상세보기 실패: 아이디를 찾을 수 없습니다."));
     }
 
     @Transactional
-    public void 글삭제하기(int id) {
+    public void 글삭제하기(Long id) {
         boardRepository.deleteById(id);
     }
 
     @Transactional
-    public void 글수정하기(int id, Board requestBoard) {
+    public void 글수정하기(Long id, Board requestBoard) {
         Board board = boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("글 찾기 실패: 아이디를 찾을 수 없습니다."));
         board.setTitle(requestBoard.getTitle());
         board.setContent(requestBoard.getContent());
@@ -77,12 +77,12 @@ public class BoardService {
     }
 
     @Transactional
-    public void 댓글삭제(int replyId) {
+    public void 댓글삭제(Long replyId) {
         replyRepository.deleteById(replyId);
     }
 
     @Transactional(readOnly = true)
-    public Page<Board> 피드보기(int principalId, Pageable pageable) {
+    public Page<Board> 피드보기(Long principalId, Pageable pageable) {
         return boardRepository.feed(principalId, pageable);
     }
 }

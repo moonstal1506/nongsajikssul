@@ -41,7 +41,7 @@ public class BoardController {
     }
 
     @GetMapping("/board/{id}")
-    public String findById(@PathVariable int id, Model model,
+    public String findById(@PathVariable Long id, Model model,
                            @AuthenticationPrincipal PrincipalDetails principalDetails) {
         model.addAttribute("board", boardService.글상세보기(id, principalDetails.getUser().getId()));
 
@@ -49,7 +49,7 @@ public class BoardController {
     }
 
     @GetMapping("/board/{id}/updateForm")
-    public String updateForm(@PathVariable int id, Model model) {
+    public String updateForm(@PathVariable Long id, Model model) {
         model.addAttribute("board", boardService.수정페이지(id));
         return "board/updateForm";
     }

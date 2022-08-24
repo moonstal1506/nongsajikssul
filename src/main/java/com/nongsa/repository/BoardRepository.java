@@ -10,9 +10,9 @@ import org.springframework.data.jpa.repository.Query;
 import java.awt.*;
 import java.util.List;
 
-public interface BoardRepository extends JpaRepository<Board, Integer> {
+public interface BoardRepository extends JpaRepository<Board, Long> {
     @Query(value = "SELECT * FROM board WHERE userId IN (SELECT toUserId FROM subscribe WHERE fromUserId =:principalId) order by id desc", nativeQuery = true)
-    Page<Board> feed(int principalId, Pageable pageable);
+    Page<Board> feed(Long principalId, Pageable pageable);
 
     @Query(value = "SELECT b.* FROM board b " +
             "LEFT OUTER JOIN (SELECT  boardId, COUNT(boardId) likeCount FROM likes GROUP BY boardId) c " +

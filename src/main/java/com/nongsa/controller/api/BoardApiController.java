@@ -36,13 +36,13 @@ public class BoardApiController {
     }
 
     @DeleteMapping("/api/board/{id}")
-    public ResponseEntity<?> deleteById(@PathVariable int id) {
+    public ResponseEntity<?> deleteById(@PathVariable Long id) {
         boardService.글삭제하기(id);
         return new ResponseEntity<>(new ResponseDto<>(1, "글삭제성공", null), HttpStatus.OK);
     }
 
     @PutMapping("/api/board/{id}")
-    public ResponseEntity<?> update(@PathVariable int id, @RequestBody Board board) {
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Board board) {
         boardService.글수정하기(id, board);
         return new ResponseEntity<>(new ResponseDto<>(1, "글수정성공", null), HttpStatus.OK);
 
@@ -55,19 +55,19 @@ public class BoardApiController {
     }
 
     @DeleteMapping("/api/board/{boardId}/reply/{replyId}")
-    public ResponseEntity<?> replyDelete(@PathVariable int replyId) {
+    public ResponseEntity<?> replyDelete(@PathVariable Long replyId) {
         boardService.댓글삭제(replyId);
         return new ResponseEntity<>(new ResponseDto<>(1, "댓글삭제성공", null), HttpStatus.OK);
     }
 
     @PostMapping("/board/{boardId}/likes")
-    public ResponseEntity<?> likes(@PathVariable int boardId, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+    public ResponseEntity<?> likes(@PathVariable Long boardId, @AuthenticationPrincipal PrincipalDetails principalDetails) {
         likesService.좋아요(boardId, principalDetails.getUser().getId());
         return new ResponseEntity<>(new ResponseDto<>(1, "좋아요성공", null), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/board/{boardId}/likes")
-    public ResponseEntity<?> unLikes(@PathVariable int boardId, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+    public ResponseEntity<?> unLikes(@PathVariable Long boardId, @AuthenticationPrincipal PrincipalDetails principalDetails) {
         likesService.좋아요취소(boardId, principalDetails.getUser().getId());
         return new ResponseEntity<>(new ResponseDto<>(1, "좋아요취소성공", null), HttpStatus.OK);
     }
