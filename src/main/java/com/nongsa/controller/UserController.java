@@ -38,9 +38,7 @@ public class UserController {
     private String nongsaKey;
 
     private final AuthenticationManager authenticationManager;
-
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     @GetMapping("/user/{pageUserId}")
     public String userPage(@PathVariable Long pageUserId, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
