@@ -44,7 +44,7 @@ public class BoardController {
 
     @GetMapping("/board/{id}/updateForm")
     public String updateForm(@PathVariable Long id, Model model) {
-        model.addAttribute("board", boardService.findByIdUpdate(id));
+        model.addAttribute("board", boardService.updateForm(id));
         return "board/updateForm";
     }
 

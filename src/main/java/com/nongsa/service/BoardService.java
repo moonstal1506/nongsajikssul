@@ -1,5 +1,6 @@
 package com.nongsa.service;
 
+import com.nongsa.handler.exception.CustomException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -42,7 +43,7 @@ public class BoardService {
 
     @Transactional(readOnly = true)
     public Board findById(Long id, Long principalId) {
-        Board board = boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("글상세보기 실패: 아이디를 찾을 수 없습니다."));
+        Board board = boardRepository.findById(id).orElseThrow(() -> new CustomException("글상세보기 실패: 아이디를 찾을 수 없습니다."));
         board.setLikeCount(board.getLikes().size());
         board.getLikes().forEach((like) -> {
             if (like.getUser().getId() == principalId) {
@@ -53,8 +54,8 @@ public class BoardService {
     }
 
     @Transactional(readOnly = true)
-    public Board findByIdUpdate(Long id) {
-        return boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("글상세보기 실패: 아이디를 찾을 수 없습니다."));
+    public Board updateForm(Long id) {
+        return boardRepository.findById(id).orElseThrow(() -> new CustomException("글상세보기 실패: 아이디를 찾을 수 없습니다."));
     }
 
     @Transactional
@@ -63,7 +64,7 @@ public class BoardService {
     }
 
     @Transactional
-    public void findByIdUpdate(Long id, Board requestBoard) {
+    public void update(Long id, Board requestBoard) {
         Board board = boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("글 찾기 실패: 아이디를 찾을 수 없습니다."));
         board.setTitle(requestBoard.getTitle());
         board.setContent(requestBoard.getContent());

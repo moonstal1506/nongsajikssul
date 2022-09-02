@@ -55,5 +55,4 @@ public class UserApiController {
         principalDetail.setUser(userEntity);
         return new ResponseEntity<>(new ResponseDto<>(1, "회원수정성공", null), HttpStatus.OK);
     }
-
 }

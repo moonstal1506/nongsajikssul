@@ -40,7 +40,7 @@ public class BoardApiController {
 
     @PutMapping("/api/board/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Board board) {
-        boardService.findByIdUpdate(id, board);
+        boardService.update(id, board);
         return new ResponseEntity<>(new ResponseDto<>(1, "글수정성공", null), HttpStatus.OK);
 
     }

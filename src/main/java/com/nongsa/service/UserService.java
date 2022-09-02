@@ -1,6 +1,7 @@
 package com.nongsa.service;
 
 import com.nongsa.dto.UserPageDto;
+import com.nongsa.handler.exception.CustomException;
 import com.nongsa.repository.SubscribeRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class UserService {
     public UserPageDto userPage(Long pageUserId, Long principalId) {
         UserPageDto dto = new UserPageDto();
         User userEntity = userRepository.findById(pageUserId).orElseThrow(() -> {
-            throw new IllegalStateException("해당 페이지는 없는 페이지입니다.");
+            throw new CustomException("해당 페이지는 없는 페이지입니다.");
         });
         dto.setUser(userEntity);
         dto.setPageOwnerState(pageUserId == principalId);

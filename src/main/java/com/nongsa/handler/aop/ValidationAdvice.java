@@ -1,6 +1,6 @@
 package com.nongsa.handler.aop;
 
-import com.nongsa.handler.exception.CustomValidationException;
+import com.nongsa.handler.exception.CustomApiValidationException;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -30,9 +30,12 @@ public class ValidationAdvice {
     }
 
     private static void accept(BindingResult bindingResult) {
-        Map<String, String> errorMap = bindingResult.getFieldErrors()
-                .stream().collect(Collectors.toMap(FieldError::getField, DefaultMessageSourceResolvable::getDefaultMessage, (a, b) -> b));
-        throw new CustomValidationException("유효성검사 실패", errorMap);
+        if (bindingResult.hasErrors()) {
+            Map<String, String> errorMap = new HashMap<>();
+            for (FieldError error : bindingResult.getFieldErrors()) {
+                errorMap.put(error.getField(), error.getDefaultMessage());
+            }
+            throw new CustomApiValidationException("유효성검사 실패", errorMap);
+        }
     }
-
 }
