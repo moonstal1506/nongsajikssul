@@ -54,7 +54,7 @@
     <form role="form" method="post" enctype="multipart/form-data" th:object="${itemFormDto}">
 
         <p class="h2">
-            상품 등록
+            상품 수정
         </p>
 
         <input type="hidden" th:field="*{id}">
@@ -116,7 +116,7 @@
                 </div>
             </div>
         </div>
-        <button th:formaction="|@{/admin/item/new}|" type="submit" class="btn btn-primary">저장</button>
+        <button th:formaction="|@{'/admin/item/' + ${itemFormDto.id}}|" type="submit" class="btn btn-primary">수정</button>
     </form>
 </div>
 </html>

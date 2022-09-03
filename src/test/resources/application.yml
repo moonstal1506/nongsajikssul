@@ -47,7 +47,7 @@ itemImgLocation: C:/shop/item
 uploadPath: file:///C:/shop/
 
 logging.level:
-  org.hibernate.SQL: debug
+  org.hibernate.SQL: trace
 
 nongsa:
   key: 1234

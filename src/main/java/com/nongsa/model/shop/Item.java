@@ -3,6 +3,7 @@ package com.nongsa.model.shop;
 
 
 import com.nongsa.constant.ItemSellStatus;
+import com.nongsa.dto.shop.ItemFormDto;
 import com.nongsa.model.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,4 +37,11 @@ public class Item extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private ItemSellStatus itemSellStatus;
 
+    public void updateItem(ItemFormDto itemFormDto){
+        this.itemName = itemFormDto.getItemName();
+        this.price = itemFormDto.getPrice();
+        this.stockNumber = itemFormDto.getStockNumber();
+        this.itemDetail = itemFormDto.getItemDetail();
+        this.itemSellStatus = itemFormDto.getItemSellStatus();
+    }
 }
