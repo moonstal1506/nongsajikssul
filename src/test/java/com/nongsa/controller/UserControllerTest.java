@@ -32,10 +32,10 @@ class UserControllerTest {
     public User createUser(String username, String password){
         JoinDto joinDto = new JoinDto();
         joinDto.setEmail("test@email.com");
-        joinDto.setUsername("홍길동");
+        joinDto.setUsername(username);
         joinDto.setLocation("서울");
         joinDto.setCrop("딸기");
-        joinDto.setPassword("1234");
+        joinDto.setPassword(password);
         User user = User.createUser(joinDto, passwordEncoder);
         return userService.saveUser(user);
     }
