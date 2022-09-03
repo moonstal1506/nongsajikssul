@@ -37,6 +37,15 @@ spring:
   profiles:
     include: oauth
 
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 100MB
+
+itemImgLocation: C:/shop/item
+
+uploadPath: file:///C:/shop/
+
 logging.level:
   org.hibernate.SQL: debug
 

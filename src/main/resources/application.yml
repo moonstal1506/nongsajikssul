@@ -20,7 +20,7 @@ spring:
   jpa:
     open-in-view: true
     hibernate:
-      ddl-auto: create #update , create
+      ddl-auto: validate #update , create, validate
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       use-new-id-generator-mappings: false
@@ -38,6 +38,15 @@ spring:
 
   thymeleaf:
     cache: false
+
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 100MB
+
+itemImgLocation: C:/shop/item
+
+uploadPath: file:///C:/shop/
 
 logging.level:
   org.hibernate.SQL: debug
