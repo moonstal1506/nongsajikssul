@@ -18,7 +18,7 @@ public class Cart extends BaseEntity {
     private Long id;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="UserId")
+    @JoinColumn(name="userId")
     private User user;
 
     public static Cart createCart(User user){
