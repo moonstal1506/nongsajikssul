@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Board {
+public class Board extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,9 +49,6 @@ public class Board {
 
     @Transient
     private int likeCount;
-
-    @CreationTimestamp
-    private Timestamp createDate;
 
 }
 
