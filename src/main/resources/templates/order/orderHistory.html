@@ -3,7 +3,38 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/layout}">
 
-<!-- 사용자 CSS 추가 -->
+<!-- 사용자 스크립트 추가 -->
+<th:block layout:fragment="script">
+
+    <script th:inline="javascript">
+        function cancelOrder(orderId) {
+            let url = "/order/" + orderId + "/cancel";
+            let paramData = {
+                orderId : orderId,
+            };
+
+            let param = JSON.stringify(paramData);
+
+            $.ajax({
+                url      : url,
+                type     : "POST",
+                contentType : "application/json",
+                data     : param,
+                dataType : "json",
+                cache   : false,
+                success  : function(result, status){
+                    alert("주문이 취소 되었습니다.");
+                    location.href='/orders/' + [[${page}]];
+                },
+                error : function(error){
+                    alert('주문 취소 실패');
+                }
+            });
+        }
+    </script>
+</th:block>
+
+    <!-- 사용자 CSS 추가 -->
 <th:block layout:fragment="css">
     <style>
         .content-mg{
@@ -48,10 +79,10 @@
             <h4 th:text="${order.orderDate} + ' 주문'"></h4>
             <div class="ml-3">
                 <th:block th:if="${order.orderStatus == T(com.nongsa.shop.constant.OrderStatus).ORDER}">
-                    <button type="button" class="btn btn-outline-secondary" th:value="${order.orderId}">주문취소</button>
+                    <button type="button" class="btn btn-success" th:value="${order.orderId}" onclick="cancelOrder(this.value)">주문취소</button>
                 </th:block>
                 <th:block th:unless="${order.orderStatus == T(com.nongsa.shop.constant.OrderStatus).ORDER}">
-                    <h4>(취소 완료)</h4>
+                    <button type="button" class="btn btn-danger">취소완료</button>
                 </th:block>
             </div>
         </div>
