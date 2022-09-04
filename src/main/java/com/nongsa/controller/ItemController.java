@@ -2,6 +2,7 @@ package com.nongsa.controller;
 
 import com.nongsa.dto.shop.ItemFormDto;
 import com.nongsa.dto.shop.ItemSearchDto;
+import com.nongsa.dto.shop.MainItemDto;
 import com.nongsa.model.shop.Item;
 import com.nongsa.service.ItemService;
 import lombok.RequiredArgsConstructor;
@@ -105,5 +106,18 @@ public class ItemController {
         model.addAttribute("maxPage", 5);
 
         return "item/itemMng";
+    }
+
+    @GetMapping(value = "/shop")
+    public String main(ItemSearchDto itemSearchDto, Optional<Integer> page, Model model){
+
+        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 6);
+        Page<MainItemDto> items = itemService.getMainItemPage(itemSearchDto, pageable);
+
+        model.addAttribute("items", items);
+        model.addAttribute("itemSearchDto", itemSearchDto);
+        model.addAttribute("maxPage", 5);
+
+        return "shop";
     }
 }

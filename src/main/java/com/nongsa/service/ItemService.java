@@ -3,6 +3,7 @@ package com.nongsa.service;
 import com.nongsa.dto.shop.ItemFormDto;
 import com.nongsa.dto.shop.ItemImgDto;
 import com.nongsa.dto.shop.ItemSearchDto;
+import com.nongsa.dto.shop.MainItemDto;
 import com.nongsa.model.shop.Item;
 import com.nongsa.model.shop.ItemImg;
 import com.nongsa.repository.ItemImgRepository;
@@ -87,5 +88,10 @@ public class ItemService {
     @Transactional(readOnly = true)
     public Page<Item> getAdminItemPage(ItemSearchDto itemSearchDto, Pageable pageable){
         return itemRepository.getAdminItemPage(itemSearchDto, pageable);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<MainItemDto> getMainItemPage(ItemSearchDto itemSearchDto, Pageable pageable){
+        return itemRepository.getMainItemPage(itemSearchDto, pageable);
     }
 }
