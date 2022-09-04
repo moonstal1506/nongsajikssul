@@ -1,16 +1,14 @@
 package com.nongsa.config.auth;
 
+import com.nongsa.user.model.User;
+import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
-
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import com.nongsa.model.User;
-
-import lombok.Data;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 
 @Data
 public class PrincipalDetails implements UserDetails, OAuth2User {

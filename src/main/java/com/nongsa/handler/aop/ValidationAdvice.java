@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @Aspect
 public class ValidationAdvice {
 
-    @Around("execution(* com.nongsa.controller.api.*Controller.*(..))")
+    @Around("execution(* com.nongsa..controller.api.*Controller.*(..))")
     public Object apiAdvice(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         Object[] args = proceedingJoinPoint.getArgs();
         Arrays.stream(args)

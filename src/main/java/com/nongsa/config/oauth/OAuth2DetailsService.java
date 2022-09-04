@@ -1,9 +1,9 @@
 package com.nongsa.config.oauth;
 
 import com.nongsa.config.auth.PrincipalDetails;
-import com.nongsa.constant.RoleType;
-import com.nongsa.model.User;
-import com.nongsa.repository.UserRepository;
+import com.nongsa.user.constant.RoleType;
+import com.nongsa.user.model.User;
+import com.nongsa.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
