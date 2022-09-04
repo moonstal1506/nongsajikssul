@@ -2,11 +2,14 @@ package com.nongsa.service;
 
 import com.nongsa.dto.shop.ItemFormDto;
 import com.nongsa.dto.shop.ItemImgDto;
+import com.nongsa.dto.shop.ItemSearchDto;
 import com.nongsa.model.shop.Item;
 import com.nongsa.model.shop.ItemImg;
 import com.nongsa.repository.ItemImgRepository;
 import com.nongsa.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -79,5 +82,10 @@ public class ItemService {
         }
 
         return item.getId();
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Item> getAdminItemPage(ItemSearchDto itemSearchDto, Pageable pageable){
+        return itemRepository.getAdminItemPage(itemSearchDto, pageable);
     }
 }
