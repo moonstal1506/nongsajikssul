@@ -3,13 +3,16 @@ package com.nongsa.shop.model;
 import com.nongsa.model.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 public class OrderItem extends BaseEntity {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "orderItemId")
     private Long id;
 
@@ -24,4 +27,17 @@ public class OrderItem extends BaseEntity {
     private int orderPrice;
 
     private int count;
+
+    public static OrderItem createOrderItem(Item item, int count) {
+        OrderItem orderItem = new OrderItem();
+        orderItem.setItem(item);
+        orderItem.setCount(count);
+        orderItem.setOrderPrice(item.getPrice());
+        item.removeStock(count);
+        return orderItem;
+    }
+
+    public int getTotalPrice() {
+        return orderPrice * count;
+    }
 }

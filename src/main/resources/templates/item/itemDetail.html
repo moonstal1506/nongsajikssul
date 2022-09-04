@@ -42,15 +42,9 @@
           alert("주문이 완료 되었습니다.");
           location.href='/';
         },
-        error : function(jqXHR, status, error){
-
-          if(jqXHR.status == '401'){
-            alert('로그인 후 이용해주세요');
-            location.href='/auth/loginForm';
-          } else{
-            alert(jqXHR.responseText);
-          }
-
+        error : function(error){
+          alert('로그인 후 이용해주세요');
+          location.href='/auth/loginForm';
         }
       });
     }
@@ -75,15 +69,9 @@
           alert("상품을 장바구니에 담았습니다.");
           location.href='/';
         },
-        error : function(jqXHR, status, error){
-
-          if(jqXHR.status == '401'){
-            alert('로그인 후 이용해주세요');
-            location.href='/auth/loginForm';
-          } else{
-            alert(jqXHR.responseText);
-          }
-
+        error : function(error){
+          alert('로그인 후 이용해주세요');
+          location.href='/auth/loginForm';
         }
       });
     }
