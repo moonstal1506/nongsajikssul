@@ -3,6 +3,9 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/layout}">
 
+<th:block layout:fragment="script">
+    <script type="text/javascript" th:src="@{/js/cartList.js}"></script>
+</th:block>
 <!-- 사용자 CSS 추가 -->
 <th:block layout:fragment="css">
     <style>
