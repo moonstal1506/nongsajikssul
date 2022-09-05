@@ -88,4 +88,10 @@ public class CartService {
 
         cartItem.updateCount(count);
     }
+
+    public void deleteCartItem(Long cartItemId) {
+        CartItem cartItem = cartItemRepository.findById(cartItemId)
+                .orElseThrow(EntityNotFoundException::new);
+        cartItemRepository.delete(cartItem);
+    }
 }

@@ -56,3 +56,26 @@ function updateCartItemCount(cartItemId, count){
         }
     });
 }
+
+function deleteCartItem(obj){
+    let cartItemId = obj.dataset.id;
+    let url = "/cartItem/" + cartItemId;
+
+    $.ajax({
+        url      : url,
+        type     : "DELETE",
+        dataType : "json",
+        cache   : false,
+        success  : function(result, status){
+            location.href='/cart';
+        },
+        error : function(jqXHR, status, error){
+            if(jqXHR.status == '401'){
+                alert('로그인 후 이용해주세요');
+                location.href='/members/login';
+            } else{
+                alert(jqXHR.responseJSON.message);
+            }
+        }
+    });
+}
