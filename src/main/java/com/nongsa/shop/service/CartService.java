@@ -1,5 +1,6 @@
 package com.nongsa.shop.service;
 
+import com.nongsa.shop.dto.CartDetailDto;
 import com.nongsa.shop.dto.CartItemDto;
 import com.nongsa.shop.model.Cart;
 import com.nongsa.shop.model.CartItem;
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -47,5 +50,20 @@ public class CartService {
             cartItemRepository.save(cartItem);
             return cartItem.getId();
         }
+    }
+
+    @Transactional(readOnly = true)
+    public List<CartDetailDto> getCartList(String username){
+
+        List<CartDetailDto> cartDetailDtoList = new ArrayList<>();
+
+        User user = userRepository.findByUsername(username);
+        Cart cart = cartRepository.findByUserId(user.getId());
+        if(cart == null){
+            return cartDetailDtoList;
+        }
+
+        cartDetailDtoList = cartItemRepository.findCartDetailDtoList(cart.getId());
+        return cartDetailDtoList;
     }
 }
