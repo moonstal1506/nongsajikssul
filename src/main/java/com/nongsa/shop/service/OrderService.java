@@ -94,4 +94,23 @@ public class OrderService {
                 .orElseThrow(EntityNotFoundException::new);
         order.cancelOrder();
     }
+
+    public Long orders(List<OrderDto> orderDtoList, String username){
+
+        User user = userRepository.findByUsername(username);
+        List<OrderItem> orderItemList = new ArrayList<>();
+
+        for (OrderDto orderDto : orderDtoList) {
+            Item item = itemRepository.findById(orderDto.getItemId())
+                    .orElseThrow(EntityNotFoundException::new);
+
+            OrderItem orderItem = OrderItem.createOrderItem(item, orderDto.getCount());
+            orderItemList.add(orderItem);
+        }
+
+        Order order = Order.createOrder(user, orderItemList);
+        orderRepository.save(order);
+
+        return order.getId();
+    }
 }

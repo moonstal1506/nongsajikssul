@@ -2,6 +2,8 @@ package com.nongsa.shop.service;
 
 import com.nongsa.shop.dto.CartDetailDto;
 import com.nongsa.shop.dto.CartItemDto;
+import com.nongsa.shop.dto.CartOrderDto;
+import com.nongsa.shop.dto.OrderDto;
 import com.nongsa.shop.model.Cart;
 import com.nongsa.shop.model.CartItem;
 import com.nongsa.shop.model.Item;
@@ -28,6 +30,7 @@ public class CartService {
     private final UserRepository userRepository;
     private final CartRepository cartRepository;
     private final CartItemRepository cartItemRepository;
+    private final OrderService orderService;
 
     public Long addCart(CartItemDto cartItemDto, String username){
 
@@ -93,5 +96,30 @@ public class CartService {
         CartItem cartItem = cartItemRepository.findById(cartItemId)
                 .orElseThrow(EntityNotFoundException::new);
         cartItemRepository.delete(cartItem);
+    }
+
+    public Long orderCartItem(List<CartOrderDto> cartOrderDtoList, String username){
+        List<OrderDto> orderDtoList = new ArrayList<>();
+
+        for (CartOrderDto cartOrderDto : cartOrderDtoList) {
+            CartItem cartItem = cartItemRepository
+                    .findById(cartOrderDto.getCartItemId())
+                    .orElseThrow(EntityNotFoundException::new);
+
+            OrderDto orderDto = new OrderDto();
+            orderDto.setItemId(cartItem.getItem().getId());
+            orderDto.setCount(cartItem.getCount());
+            orderDtoList.add(orderDto);
+        }
+
+        Long orderId = orderService.orders(orderDtoList, username);
+        for (CartOrderDto cartOrderDto : cartOrderDtoList) {
+            CartItem cartItem = cartItemRepository
+                    .findById(cartOrderDto.getCartItemId())
+                    .orElseThrow(EntityNotFoundException::new);
+            cartItemRepository.delete(cartItem);
+        }
+
+        return orderId;
     }
 }

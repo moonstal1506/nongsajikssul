@@ -79,3 +79,41 @@ function deleteCartItem(obj){
         }
     });
 }
+
+function orders(){
+    let url = "/cart/orders";
+    let dataList = new Array();
+    let paramData = new Object();
+
+    $("input[name=cartChkBox]:checked").each(function() {
+        let cartItemId = $(this).val();
+        let data = new Object();
+        data["cartItemId"] = cartItemId;
+        dataList.push(data);
+    });
+
+    paramData['cartOrderDtoList'] = dataList;
+
+    let param = JSON.stringify(paramData);
+
+    $.ajax({
+        url      : url,
+        type     : "POST",
+        contentType : "application/json",
+        data     : param,
+        dataType : "json",
+        cache   : false,
+        success  : function(result, status){
+            alert("주문이 완료 되었습니다.");
+            location.href='/orders';
+        },
+        error : function(jqXHR, status, error){
+            if(jqXHR.status == '401'){
+                alert('로그인 후 이용해주세요');
+                location.href='/members/login';
+            } else{
+                alert(jqXHR.responseJSON.message);
+            }
+        }
+    });
+}
