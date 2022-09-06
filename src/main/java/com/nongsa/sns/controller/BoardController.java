@@ -37,6 +37,7 @@ public class BoardController {
     @GetMapping("/board/{id}")
     public String findById(@PathVariable Long id, Model model,
                            @AuthenticationPrincipal PrincipalDetails principalDetails) {
+        boardService.updateCount(id);
         model.addAttribute("board", boardService.findById(id, principalDetails.getUser().getId()));
 
         return "board/detail";

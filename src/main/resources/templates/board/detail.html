@@ -13,8 +13,9 @@
 
     <br/> <br/>
     <div>
-        글 번호 : <span id="id" th:text="${board.id}">
-		</span> 작성자 : <a th:href="@{/user/{id}(id=${board.user.id})}"><span>[[${board.user.username}]]</span></a>
+        <span id="id" th:text="|글 번호 : ${board.id}|"></span>
+        작성자 : <a th:href="@{/user/{id}(id=${board.user.id})}"><span>[[${board.user.username}]]</span></a>
+        <span id="count" th:text="|조회수 : ${board.count}|"></span>
     </div>
     <br/>
     <div>

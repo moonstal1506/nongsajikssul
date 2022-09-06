@@ -50,5 +50,9 @@ public class Board extends BaseEntity {
     @Transient
     private int likeCount;
 
+    public void updateCount(){
+        count++;
+    }
+
 }
 
