@@ -41,7 +41,7 @@ public class Board extends BaseEntity {
     private List<Reply> replys;
 
     @JsonIgnoreProperties({"board"})
-    @OneToMany(mappedBy = "board")
+    @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
     private List<Likes> likes;
 
     @Transient
