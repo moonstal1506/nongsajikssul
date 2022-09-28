@@ -2,14 +2,7 @@ package com.nongsa.sns.model;
 
 import java.sql.Timestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 
 import com.nongsa.user.model.User;
 import lombok.AllArgsConstructor;
@@ -31,11 +24,11 @@ public class Subscribe {
     private Long id;
 
     @JoinColumn(name = "fromUserId")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private User fromUser;
 
     @JoinColumn(name = "toUserId")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private User toUser;
 
     @CreationTimestamp

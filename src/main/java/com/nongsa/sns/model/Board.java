@@ -31,17 +31,17 @@ public class Board extends BaseEntity {
     private int count;
 
     @JsonIgnoreProperties({"boards"})
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userId")
     private User user;
 
-    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
     @JsonIgnoreProperties({"board"})
     @OrderBy("id desc")
     private List<Reply> replys;
 
     @JsonIgnoreProperties({"board"})
-    @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "board", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Likes> likes;
 
     @Transient

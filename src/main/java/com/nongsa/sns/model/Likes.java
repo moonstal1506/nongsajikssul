@@ -24,12 +24,12 @@ public class Likes {
     private Long id;
 
     @JoinColumn(name = "boardId")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Board board;
 
     @JsonIgnoreProperties({"boards"})
     @JoinColumn(name = "userId")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
     @CreationTimestamp
