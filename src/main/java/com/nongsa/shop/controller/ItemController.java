@@ -6,6 +6,7 @@ import com.nongsa.shop.dto.ItemSearchDto;
 import com.nongsa.shop.dto.MainItemDto;
 import com.nongsa.shop.model.Item;
 import com.nongsa.shop.service.ItemService;
+import com.nongsa.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

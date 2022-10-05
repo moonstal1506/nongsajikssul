@@ -16,6 +16,10 @@ public class ItemFormDto {
 
     private Long id;
 
+    private String createdBy;
+
+    private Long sellerId;
+
     @NotBlank(message = "상품명은 필수 입력 값입니다.")
     private String itemName;
 
@@ -41,7 +45,7 @@ public class ItemFormDto {
     }
 
     public static ItemFormDto of(Item item){
-        return modelMapper.map(item,ItemFormDto.class);
+        return modelMapper.map(item, ItemFormDto.class);
     }
 
 }

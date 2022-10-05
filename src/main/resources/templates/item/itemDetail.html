@@ -8,14 +8,14 @@
   <script th:inline="javascript">
     $(document).ready(function(){
 
-      calculateToalPrice();
+      calculateTotalPrice();
 
       $("#count").change( function(){
-        calculateToalPrice();
+        calculateTotalPrice();
       });
     });
 
-    function calculateToalPrice(){
+    function calculateTotalPrice(){
       let count = $("#count").val();
       let price = $("#price").val();
       let totalPrice = price*count;
@@ -141,6 +141,8 @@
       <hr class="my-4">
 
       <div class="text-right mgt-50">
+        <h5>판매자</h5>
+        <a th:href="@{/user/{id}(id=${item.sellerId})}"><h3 th:text="${item.createdBy}"></h3></a>
         <h5>결제 금액</h5>
         <h3 name="totalPrice" id="totalPrice" class="font-weight-bold"></h3>
       </div>
@@ -148,6 +150,7 @@
         <button type="button" class="btn btn-light border border-primary btn-lg" onclick="addCart()">장바구니 담기</button>
         <button type="button" class="btn btn-primary btn-lg" onclick="order()">주문하기</button>
       </div>
+
       <div th:unless="${item.itemSellStatus == T(com.nongsa.shop.constant.ItemSellStatus).SELL}" class="text-right">
         <button type="button" class="btn btn-danger btn-lg">품절</button>
       </div>

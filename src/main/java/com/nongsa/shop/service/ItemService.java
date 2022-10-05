@@ -8,6 +8,8 @@ import com.nongsa.shop.model.Item;
 import com.nongsa.shop.model.ItemImg;
 import com.nongsa.shop.repository.ItemImgRepository;
 import com.nongsa.shop.repository.ItemRepository;
+import com.nongsa.user.model.User;
+import com.nongsa.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,10 +27,9 @@ import java.util.List;
 public class ItemService {
 
     private final ItemRepository itemRepository;
-
     private final ItemImgService itemImgService;
-
     private final ItemImgRepository itemImgRepository;
+    private final UserService userService;
 
     public Long saveItem(ItemFormDto itemFormDto, List<MultipartFile> itemImgFileList) throws Exception {
 
@@ -66,6 +67,10 @@ public class ItemService {
                 .orElseThrow(EntityNotFoundException::new);
         ItemFormDto itemFormDto = ItemFormDto.of(item);
         itemFormDto.setItemImgDtoList(itemImgDtoList);
+
+        User user = userService.findByUsername(itemFormDto.getCreatedBy());
+        itemFormDto.setSellerId(user.getId());
+
         return itemFormDto;
     }
 
