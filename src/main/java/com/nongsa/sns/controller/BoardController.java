@@ -1,6 +1,9 @@
 package com.nongsa.sns.controller;
 
 import com.nongsa.config.auth.PrincipalDetails;
+import com.nongsa.sns.dto.BoardSearchDto;
+import com.nongsa.sns.service.BoardService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -10,10 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.nongsa.sns.service.BoardService;
-
-import lombok.RequiredArgsConstructor;
-
 @RequiredArgsConstructor
 @Controller
 public class BoardController {
@@ -21,9 +20,10 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping({"", "/"})
-    public String index(Model model,
+    public String index(BoardSearchDto boardSearchDto, Model model,
                         @PageableDefault(size = 4, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
-        model.addAttribute("boards", boardService.findAll(pageable));
+        model.addAttribute("boards", boardService.findAll(boardSearchDto, pageable));
+        model.addAttribute("boardSearchDto", boardSearchDto);
         return "index";
     }
 

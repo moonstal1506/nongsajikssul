@@ -31,6 +31,24 @@
             <li class="page-item" th:unless="${boards.last}"><a style="color: #28a745;" class="page-link"
                                                                 th:href="@{/(page=|${boards.number+1}|)}">Next</a></li>
         </ul>
+
+        <form th:action="@{'/'}" role="form" method="get">
+            <div class="form-inline justify-content-center" th:object="${boardSearchDto}">
+                <select th:field="*{searchDateType}" class="form-control" style="width:auto;">
+                    <option value="all">전체기간</option>
+                    <option value="1d">1일</option>
+                    <option value="1w">1주</option>
+                    <option value="1m">1개월</option>
+                    <option value="6m">6개월</option>
+                </select>
+                <select th:field="*{searchBy}" class="form-control" style="width:auto;">
+                    <option value="title">제목</option>
+                    <option value="createdBy">등록자</option>
+                </select>
+                <input th:field="*{searchQuery}" type="text" class="form-control" placeholder="검색어를 입력해주세요">
+                <button id="searchBtn" type="submit" class="btn btn-success">검색</button>
+            </div>
+        </form>
     </div>
 </div>
 </html>

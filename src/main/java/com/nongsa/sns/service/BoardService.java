@@ -1,18 +1,17 @@
 package com.nongsa.sns.service;
 
 import com.nongsa.handler.exception.CustomException;
+import com.nongsa.sns.dto.BoardSearchDto;
+import com.nongsa.sns.dto.ReplySaveRequestDto;
+import com.nongsa.sns.model.Board;
+import com.nongsa.sns.repository.BoardRepository;
+import com.nongsa.sns.repository.ReplyRepository;
+import com.nongsa.user.model.User;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.nongsa.sns.dto.ReplySaveRequestDto;
-import com.nongsa.sns.model.Board;
-import com.nongsa.user.model.User;
-import com.nongsa.sns.repository.BoardRepository;
-import com.nongsa.sns.repository.ReplyRepository;
-
-import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
@@ -31,10 +30,9 @@ public class BoardService {
     }
 
     @Transactional(readOnly = true)
-    public Page<Board> findAll(Pageable pageable) {
-        return boardRepository.findAll(pageable);
+    public Page<Board> findAll(BoardSearchDto boardSearchDto, Pageable pageable) {
+        return boardRepository.getBoardListPage(boardSearchDto, pageable);
     }
-
 
     @Transactional(readOnly = true)
     public List<Board> findAllPopular() {
