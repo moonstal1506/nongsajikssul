@@ -18,15 +18,15 @@
 
         <ul class="pagination justify-content-center">
             <li class="page-item disabled " th:if="${boards.first}"><a class="page-link"
-                                                                       th:href="@{/(page=|${boards.number-1}|)}">Previous</a></li>
+                                                                       th:href="@{/feed(page=|${boards.number-1}|)}">Previous</a></li>
             <li class="page-item" th:unless="${boards.first}"><a style="color: #28a745;"
                                                                  class="page-link page-link-success"
-                                                                 th:href="@{/(page=|${boards.number-1}|)}">Previous</a></li>
+                                                                 th:href="@{/feed(page=|${boards.number-1}|)}">Previous</a></li>
 
             <li class="page-item disabled" th:if="${boards.last}"><a class="page-link"
-                                                                     th:href="@{/(page=|${boards.number+1}|)}">Next</a></li>
+                                                                     th:href="@{/feed(page=|${boards.number+1}|)}">Next</a></li>
             <li class="page-item" th:unless="${boards.last}"><a style="color: #28a745;" class="page-link"
-                                                                th:href="@{/(page=|${boards.number+1}|)}">Next</a></li>
+                                                                th:href="@{/feed(page=|${boards.number+1}|)}">Next</a></li>
         </ul>
     </div>
 
