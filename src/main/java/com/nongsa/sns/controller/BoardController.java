@@ -31,7 +31,6 @@ public class BoardController {
     public String popular(Model model) {
         model.addAttribute("boards", boardService.findAllPopular());
         return "popular";
-
     }
 
     @GetMapping("/board/{id}")
