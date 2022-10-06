@@ -40,7 +40,7 @@
         cache   : false,
         success  : function(result, status){
           alert("주문이 완료 되었습니다.");
-          location.href='/';
+          location.href='/orders';
         },
         error : function(error){
           alert('로그인 후 이용해주세요');
@@ -67,7 +67,6 @@
         cache   : false,
         success  : function(result, status){
           alert("상품을 장바구니에 담았습니다.");
-          location.href='/';
         },
         error : function(error){
           console.log(error)
