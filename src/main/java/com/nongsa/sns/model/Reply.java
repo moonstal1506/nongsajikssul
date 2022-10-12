@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 import javax.persistence.*;
 
+import com.nongsa.model.BaseEntity;
 import com.nongsa.user.model.User;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -17,7 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-public class Reply {
+public class Reply extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,6 +34,9 @@ public class Reply {
     @JoinColumn(name = "userId")
     private User user;
 
-    @CreationTimestamp
-    private Timestamp createDate;
+    public Reply(String content, Board board, User user) {
+        this.content = content;
+        this.board = board;
+        this.user = user;
+    }
 }

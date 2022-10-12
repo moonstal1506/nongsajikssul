@@ -4,9 +4,11 @@ import com.nongsa.handler.exception.CustomException;
 import com.nongsa.sns.dto.BoardSearchDto;
 import com.nongsa.sns.dto.ReplySaveRequestDto;
 import com.nongsa.sns.model.Board;
+import com.nongsa.sns.model.Reply;
 import com.nongsa.sns.repository.BoardRepository;
 import com.nongsa.sns.repository.ReplyRepository;
 import com.nongsa.user.model.User;
+import com.nongsa.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,6 +21,7 @@ import java.util.List;
 @Service
 public class BoardService {
 
+    private final UserRepository userRepository;
     private final BoardRepository boardRepository;
     private final ReplyRepository replyRepository;
 
@@ -76,8 +79,12 @@ public class BoardService {
 
     @Transactional
     public void saveReply(ReplySaveRequestDto replySaveRequestDto) {
-        replyRepository.mSave(replySaveRequestDto.getUserId(), replySaveRequestDto.getBoardId(),
-                replySaveRequestDto.getContent());
+        Reply reply = new Reply(
+                replySaveRequestDto.getContent(),
+                boardRepository.findById(replySaveRequestDto.getBoardId()).orElseThrow(() -> new IllegalArgumentException("글 찾기 실패")),
+                userRepository.findById(replySaveRequestDto.getUserId()).orElseThrow(() -> new IllegalArgumentException("유저 찾기 실패"))
+                );
+        replyRepository.save(reply);
     }
 
     @Transactional
