@@ -29,6 +29,10 @@ spring:
         format_sql: true
         use_sql_comments: true
         default_batch_fetch_size: 1000
+
+  mvc:
+    path match:
+      matching-strategy: ant_path_matcher
       
   jackson:
     serialization:
