@@ -38,7 +38,6 @@ public class BoardController {
                            @AuthenticationPrincipal PrincipalDetails principalDetails) {
         boardService.updateCount(id);
         model.addAttribute("board", boardService.findById(id, principalDetails.getUser().getId()));
-
         return "board/detail";
     }
 

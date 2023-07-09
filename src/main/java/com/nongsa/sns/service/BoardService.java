@@ -1,8 +1,7 @@
 package com.nongsa.sns.service;
 
 import com.nongsa.handler.exception.CustomException;
-import com.nongsa.sns.dto.BoardSearchDto;
-import com.nongsa.sns.dto.ReplySaveRequestDto;
+import com.nongsa.sns.dto.*;
 import com.nongsa.sns.model.Board;
 import com.nongsa.sns.model.Reply;
 import com.nongsa.sns.repository.BoardRepository;
@@ -26,9 +25,11 @@ public class BoardService {
     private final ReplyRepository replyRepository;
 
     @Transactional
-    public void save(Board board, User user) {
-        board.setCount(0);
-        board.setUser(user);
+    public void save(BoardSaveRequestDto boardDto, User user) {
+        Board board = Board.builder()
+                .title(boardDto.getTitle())
+                .content(boardDto.getContent())
+                .user(user).build();
         boardRepository.save(board);
     }
 
@@ -43,15 +44,9 @@ public class BoardService {
     }
 
     @Transactional(readOnly = true)
-    public Board findById(Long id, Long principalId) {
+    public BoardResponseDto findById(Long id, Long principalId) {
         Board board = boardRepository.findById(id).orElseThrow(() -> new CustomException("글상세보기 실패: 아이디를 찾을 수 없습니다."));
-        board.setLikeCount(board.getLikes().size());
-        board.getLikes().forEach((like) -> {
-            if (like.getUser().getId() == principalId) {
-                board.setLikeState(true);
-            }
-        });
-        return board;
+        return new BoardResponseDto(board, principalId);
     }
 
     @Transactional(readOnly = true)
@@ -65,10 +60,9 @@ public class BoardService {
     }
 
     @Transactional
-    public void update(Long id, Board requestBoard) {
+    public void update(Long id, BoardUpdateRequestDto requestBoard) {
         Board board = boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("글 찾기 실패: 아이디를 찾을 수 없습니다."));
-        board.setTitle(requestBoard.getTitle());
-        board.setContent(requestBoard.getContent());
+        board.update(requestBoard.getTitle(), requestBoard.getContent());
     }
 
     @Transactional
@@ -83,7 +77,7 @@ public class BoardService {
                 replySaveRequestDto.getContent(),
                 boardRepository.findById(replySaveRequestDto.getBoardId()).orElseThrow(() -> new IllegalArgumentException("글 찾기 실패")),
                 userRepository.findById(replySaveRequestDto.getUserId()).orElseThrow(() -> new IllegalArgumentException("유저 찾기 실패"))
-                );
+        );
         replyRepository.save(reply);
     }
 

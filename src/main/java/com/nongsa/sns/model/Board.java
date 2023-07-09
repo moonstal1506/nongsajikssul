@@ -3,15 +3,12 @@ package com.nongsa.sns.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.nongsa.model.BaseEntity;
 import com.nongsa.user.model.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Data
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -44,15 +41,13 @@ public class Board extends BaseEntity {
     @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
     private List<Likes> likes;
 
-    @Transient
-    private boolean likeState;
-
-    @Transient
-    private int likeCount;
-
     public void updateCount(){
         count++;
     }
 
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 }
 

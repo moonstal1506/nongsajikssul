@@ -1,5 +1,7 @@
 package com.nongsa.sns.controller.api;
 
+import com.nongsa.sns.dto.BoardSaveRequestDto;
+import com.nongsa.sns.dto.BoardUpdateRequestDto;
 import com.nongsa.sns.service.LikesService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,8 +32,8 @@ public class BoardApiController {
     private final LikesService likesService;
 
     @PostMapping("/api/board")
-    public ResponseEntity<?> save(@RequestBody Board board, @AuthenticationPrincipal PrincipalDetails principal) {
-        boardService.save(board, principal.getUser());
+    public ResponseEntity<?> save(@RequestBody BoardSaveRequestDto saveRequestDto, @AuthenticationPrincipal PrincipalDetails principal) {
+        boardService.save(saveRequestDto, principal.getUser());
         return new ResponseEntity<>(new ResponseDto<>(1, "글쓰기성공", null), HttpStatus.OK);
     }
 
@@ -42,8 +44,8 @@ public class BoardApiController {
     }
 
     @PutMapping("/api/board/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Board board) {
-        boardService.update(id, board);
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody BoardUpdateRequestDto updateRequestDto) {
+        boardService.update(id, updateRequestDto);
         return new ResponseEntity<>(new ResponseDto<>(1, "글수정성공", null), HttpStatus.OK);
 
     }
