@@ -55,6 +55,3 @@ uploadPath: file:///C:/shop/
 
 logging.level:
   org.hibernate.SQL: debug
-
-nongsa:
-  key: 1234

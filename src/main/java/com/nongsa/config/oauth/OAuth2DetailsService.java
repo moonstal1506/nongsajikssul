@@ -24,25 +24,39 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         OAuth2User oauth2User = super.loadUser(userRequest);
+        String provider = userRequest.getClientRegistration().getRegistrationId();
+        OAuth2UserInfo oAuth2UserInfo = getOAuth2UserInfo(oauth2User, provider);
 
-        Map<String, Object> userInfo = oauth2User.getAttributes();
-        String username = "행복한 농부_" + userInfo.get("id");
-        String password = new BCryptPasswordEncoder().encode(UUID.randomUUID().toString());
-        String email = (String) userInfo.get("email");
-
-       User userEntity = userRepository.findByUsername(username);
+        String providerId = oAuth2UserInfo.getProviderId();
+        String username = provider + "_" + providerId;
+        User userEntity = userRepository.findByUsername(username);
 
         if (userEntity == null) {
-            User user = User.builder()
-                    .username(username)
-                    .password(password)
-                    .email(email)
-                    .role(RoleType.USER)
-                    .oauth("facebook")
-                    .build();
-            return new PrincipalDetails(userRepository.save(user), oauth2User.getAttributes());
-        } else {
-            return new PrincipalDetails(userEntity, oauth2User.getAttributes());
+            userEntity = saveUser(provider, oAuth2UserInfo, username);
         }
+        return new PrincipalDetails(userEntity, oauth2User.getAttributes());
     }
+
+    private OAuth2UserInfo getOAuth2UserInfo(OAuth2User oauth2User, String provider) {
+        Map<String, Object> userInfo = oauth2User.getAttributes();
+
+        if (provider.equals("kakao")) {
+            return new KakaoUserInfo(userInfo);
+        }
+
+        return new FacebookUserInfo(userInfo);
+    }
+
+    private User saveUser(String provider, OAuth2UserInfo oAuth2UserInfo, String username) {
+        String uuid = UUID.randomUUID().toString().substring(0, 6);
+        User user = User.builder()
+                .username(username)
+                .password(new BCryptPasswordEncoder().encode(uuid))
+                .email(oAuth2UserInfo.getEmail())
+                .role(RoleType.USER)
+                .oauth(provider)
+                .build();
+        return userRepository.save(user);
+    }
+
 }

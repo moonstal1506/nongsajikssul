@@ -30,7 +30,7 @@
 
         <button id="btn-login" th:onclick="document.getElementById('login').submit()" class="btn btn-success">로그인
         </button>
-        <a href="https://kauth.kakao.com/oauth/authorize?client_id=	&redirect_uri=http://localhost:9000/auth/kakao/callback&response_type=code">
+        <a href="/oauth2/authorization/kakao">
             <img height="38px" src="/image/kakao_login_button.png"/>
         </a>
         <button class="btn btn-primary" th:onclick="|javascript:location.href='/oauth2/authorization/facebook'|">
