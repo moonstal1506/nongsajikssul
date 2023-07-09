@@ -64,14 +64,13 @@ public class User extends BaseEntity {
     private Timestamp createDate;
 
     public static User createUser(JoinDto joinDto, BCryptPasswordEncoder passwordEncoder){
-        User user = new User();
-        user.setUsername(joinDto.getUsername());
-        user.setEmail(joinDto.getEmail());
-        user.setLocation(joinDto.getLocation());
-        user.setCrop(joinDto.getCrop());
-        String password = passwordEncoder.encode(joinDto.getPassword());
-        user.setPassword(password);
-        user.setRole(RoleType.ADMIN);
+        User user = new User().builder()
+                .username(joinDto.getUsername())
+                .password(passwordEncoder.encode(joinDto.getPassword()))
+                .email(joinDto.getEmail())
+                .location(joinDto.getLocation())
+                .crop(joinDto.getCrop())
+                .role(RoleType.ADMIN).build();
         return user;
     }
 }
