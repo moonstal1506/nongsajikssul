@@ -1,10 +1,9 @@
-package com.nongsa.handler.aop;
+package com.nongsa.common.handler.aop;
 
-import com.nongsa.handler.exception.CustomApiValidationException;
+import com.nongsa.common.handler.exception.CustomApiValidationException;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
@@ -13,7 +12,6 @@ import org.springframework.validation.FieldError;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Component
 @Aspect

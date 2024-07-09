@@ -1,4 +1,4 @@
-package com.nongsa.util;
+package com.nongsa.common.util;
 
 public class Script {
 

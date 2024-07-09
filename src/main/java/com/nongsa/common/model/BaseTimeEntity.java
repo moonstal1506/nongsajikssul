@@ -1,4 +1,4 @@
-package com.nongsa.model;
+package com.nongsa.common.model;
 
 import lombok.Getter;
 import lombok.Setter;

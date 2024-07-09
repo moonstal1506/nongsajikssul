@@ -1,7 +1,7 @@
 package com.nongsa.user.service;
 
 import com.nongsa.user.dto.UserPageDto;
-import com.nongsa.handler.exception.CustomException;
+import com.nongsa.common.handler.exception.CustomException;
 import com.nongsa.sns.repository.SubscribeRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
 package com.nongsa.sns.controller.api;
 
 import com.nongsa.config.auth.PrincipalDetails;
-import com.nongsa.dto.ResponseDto;
+import com.nongsa.common.dto.ResponseDto;
 import com.nongsa.sns.service.SubscribeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

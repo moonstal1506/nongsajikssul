@@ -1,4 +1,4 @@
-package com.nongsa.dto;
+package com.nongsa.common.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

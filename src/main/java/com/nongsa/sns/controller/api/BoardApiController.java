@@ -16,8 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.nongsa.config.auth.PrincipalDetails;
 import com.nongsa.sns.dto.ReplySaveRequestDto;
-import com.nongsa.dto.ResponseDto;
-import com.nongsa.sns.model.Board;
+import com.nongsa.common.dto.ResponseDto;
 import com.nongsa.sns.service.BoardService;
 
 import lombok.RequiredArgsConstructor;

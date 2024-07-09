@@ -1,4 +1,4 @@
-package com.nongsa.handler.exception;
+package com.nongsa.common.handler.exception;
 
 public class CustomException extends RuntimeException{
 

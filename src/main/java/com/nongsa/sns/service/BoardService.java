@@ -1,6 +1,6 @@
 package com.nongsa.sns.service;
 
-import com.nongsa.handler.exception.CustomException;
+import com.nongsa.common.handler.exception.CustomException;
 import com.nongsa.sns.dto.*;
 import com.nongsa.sns.model.Board;
 import com.nongsa.sns.model.Reply;

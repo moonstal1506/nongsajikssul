@@ -1,12 +1,9 @@
 package com.nongsa.sns.model;
 
-import java.sql.Timestamp;
-
 import javax.persistence.*;
 
-import com.nongsa.model.BaseEntity;
+import com.nongsa.common.model.BaseEntity;
 import com.nongsa.user.model.User;
-import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

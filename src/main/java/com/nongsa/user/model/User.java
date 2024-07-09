@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.nongsa.user.constant.RoleType;
-import com.nongsa.model.BaseEntity;
+import com.nongsa.common.model.BaseEntity;
 import com.nongsa.user.dto.JoinDto;
 import com.nongsa.sns.model.Board;
 import org.hibernate.annotations.CreationTimestamp;

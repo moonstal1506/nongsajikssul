@@ -2,7 +2,7 @@ package com.nongsa.user.controller.api;
 
 import com.nongsa.config.auth.PrincipalDetails;
 import com.nongsa.user.dto.JoinDto;
-import com.nongsa.dto.ResponseDto;
+import com.nongsa.common.dto.ResponseDto;
 import com.nongsa.sns.dto.SubscribeDto;
 import com.nongsa.user.model.User;
 import com.nongsa.sns.service.SubscribeService;

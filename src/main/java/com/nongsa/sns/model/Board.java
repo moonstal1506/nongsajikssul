@@ -1,7 +1,7 @@
 package com.nongsa.sns.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.nongsa.model.BaseEntity;
+import com.nongsa.common.model.BaseEntity;
 import com.nongsa.user.model.User;
 import lombok.*;
 

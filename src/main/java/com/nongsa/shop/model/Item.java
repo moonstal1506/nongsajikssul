@@ -1,10 +1,10 @@
 package com.nongsa.shop.model;
 
 
-import com.nongsa.handler.exception.OutOfStockException;
+import com.nongsa.common.handler.exception.OutOfStockException;
 import com.nongsa.shop.constant.ItemSellStatus;
 import com.nongsa.shop.dto.ItemFormDto;
-import com.nongsa.model.BaseEntity;
+import com.nongsa.common.model.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

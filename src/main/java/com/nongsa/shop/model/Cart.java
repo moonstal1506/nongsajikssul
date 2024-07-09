@@ -1,6 +1,6 @@
 package com.nongsa.shop.model;
 
-import com.nongsa.model.BaseEntity;
+import com.nongsa.common.model.BaseEntity;
 import com.nongsa.user.model.User;
 import lombok.Getter;
 import lombok.Setter;
