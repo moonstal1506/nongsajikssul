@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <style>
+        .chat-container {
+            height: 500px;
+            max-height: 500px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .chat-bubble {
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .chat-bubble.user {
+            background-color: #28a745;
+            color: white;
+            align-self: flex-end;
+            text-align: right;
+        }
+        .chat-bubble.bot {
+            background-color: #f1f0f0;
+            align-self: flex-start;
+        }
+    </style>
+</head>
+
+<div layout:fragment="content">
+    <div class="container " style="width: 800px">
+        <div>
+            <h2>농부의 챗봇🤖</h2>
+            <hr/>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h3>무엇이든 물어보세요</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chat-container d-flex flex-column" style="height: 500px; max-height: 500px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; margin-bottom: 20px;">
+                            <!-- Chat messages will be appended here -->
+                        </div>
+                        <div class="input-group">
+                            <textarea id="chatInput" class="form-control" rows="1" placeholder="무엇을 도와드릴까요?"></textarea>
+                            <div class="input-group-append">
+                                <button type="button" class="btn btn-success" id="sendBtn">전송</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" th:src="@{/js/chat.js}"></script>
+</div>
+
+</html>
