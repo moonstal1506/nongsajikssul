@@ -19,7 +19,7 @@
                         <a class="dropdown-item" sec:authorize="isAuthenticated()" href="/feed">피드</a>
                         <a class="dropdown-item" sec:authorize="isAuthenticated()" href="/board/saveForm">글쓰기</a>
                         <a class="dropdown-item" href="/agriculture/chat">농부의 챗봇🤖</a>
-                        <a class="dropdown-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')" href="/agriculture/chat/admin">챗봇 관리자</a>
+                        <a class="dropdown-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')" href="/admin/documents">챗봇 관리자</a>
                         <a class="dropdown-item" href="/agriculture/tech">이달의 농업기술</a>
                         <a class="dropdown-item" href="/agriculture/calculator">농약 계산기</a>
                     </div>

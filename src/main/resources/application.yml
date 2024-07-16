@@ -50,7 +50,7 @@ spring:
       max-request-size: 100MB
 
 itemImgLocation: C:/shop/item
-
+documentLocation: C:/study
 uploadPath: file:///C:/shop/
 
 logging.level:

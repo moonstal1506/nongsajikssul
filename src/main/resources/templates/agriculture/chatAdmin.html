@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<div layout:fragment="content">
+    <div class="container" style="width: 800px">
+        <div>
+            <h2>농부의 챗봇🤖</h2>
+            <hr/>
+        </div>
+        <div class="row mb-3">
+            <div class="col d-flex justify-content-end">
+                <form method="POST" action="/admin/uploadDocument" enctype="multipart/form-data" class="form-inline">
+                    <div class="form-group">
+                        <input type="file" name="documentFile" class="form-control-file">
+                    </div>
+                    <button type="submit" class="btn btn-success">업로드</button>
+                </form>
+            </div>
+        </div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th style="width: 75%;">파일명</th>
+                <th style="width: 15%;">다운로드</th>
+                <th style="width: 10%;">삭제</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="document : ${documents}">
+                <td th:text="${document.oriFileName}" style="font-size: 1.2em;"></td>
+                <td>
+                    <a th:href="@{/admin/downloadDocument/{fileName}/{oriFileName}(oriFileName=${document.oriFileName}, fileName=${document.fileName})}" class="btn btn-info btn-block">Download</a>
+                </td>
+                <td>
+                    <form method="GET" th:action="@{/admin/deleteDocument/{documentId}(documentId=${document.id})}">
+                        <button type="submit" class="btn btn-danger btn-block">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script type="text/javascript" th:src="@{/js/chatAdmin.js}"></script>
+</div>
+
+</html>
